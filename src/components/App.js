@@ -1,10 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
+import {screenNames} from "../constants/appConstants";
 import Home from './Home'
 
 import Classification from './Classification'
 import Extraction from './Extraction'
 import NavBar from './NavBar'
+import {bindActionCreators} from "redux";
+import * as myActions from "../actions";
+import {connect} from "react-redux";
+import {withStyles} from "@material-ui/core/styles";
 
 class App extends React.Component {
     constructor(props) {
@@ -14,9 +20,9 @@ class App extends React.Component {
     getScreenToRender = () => {
         let sScreenName = this.props.currentScreen;
         switch (sScreenName) {
-            case "CLASSIFICATION":
+            case screenNames.CLASSIFICATION:
                 return <Classification/>
-            case "EXTRACTION":
+            case screenNames.EXTRACTION:
                 return <Extraction/>
             default:
                 return <Home/>
@@ -27,10 +33,24 @@ class App extends React.Component {
         return (
             <div className={"appContainer"}>
                 <NavBar/>
-                {this.getScreenToRender()}
+                <div className={"screenContainer"}>
+                    {this.getScreenToRender()}
+                </div>
             </div>
         )
     }
 }
 
-export default App
+function mapStateToProps(state) {
+    return state;
+}
+
+function mapDispatchToProps(dispatch) {
+    // let actions = bindActionCreators({ homeButtonClicked: myActions.handleScreenChanged });
+    // return { ...actions, dispatch };
+    return {}
+}
+
+const ConnectedView = connect(mapStateToProps, null)(App);
+export default ConnectedView
+

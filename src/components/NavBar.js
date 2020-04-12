@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
+
 import * as myActions from '../actions/index';
+import {screenNames} from "../constants/appConstants";
 
 import {withStyles, createMuiTheme} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -38,7 +40,7 @@ class NavBar extends React.Component {
 
     handleHomeClicked = (oEvent) => {
         oEvent.stopPropagation();
-        this.props.dispatch(myActions.homeButtonClicked("HOME"));
+        this.props.dispatch(myActions.handleScreenChanged(screenNames.HOME));
     };
 
     render() {
@@ -71,9 +73,9 @@ function mapStateToProps(state) {
     return state;
 }
 function mapDispatchToProps(dispatch) {
-    let actions = bindActionCreators({ homeButtonClicked: myActions.homeButtonClicked });
+    let actions = bindActionCreators({ homeButtonClicked: myActions.handleScreenChanged });
     return { ...actions, dispatch };
 }
 
-const ConnectedAppBar = connect(mapStateToProps, mapDispatchToProps)(NavBar);
-export default withStyles(styles)(ConnectedAppBar)
+const ConnectedView = connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default withStyles(styles)(ConnectedView)

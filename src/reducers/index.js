@@ -1,18 +1,21 @@
 import getInitialState from "./initial-state";
 
 import {
-  HOME_BUTTON_CLICKED
+  HANDLE_SCREEN_CHANGED
 } from '../actions'
 
-function handleHomeButtonClicked(state, id) {
+function handleScreenChanged(state, sScreenName) {
   console.log(state)
-  return getInitialState()
+  return {
+    ...state,
+    currentScreen:sScreenName
+  }
 }
 
 export default (state = getInitialState(), action) => {
   switch (action.type) {
-    case HOME_BUTTON_CLICKED:
-      return handleHomeButtonClicked(state, action.id);
+    case HANDLE_SCREEN_CHANGED:
+      return handleScreenChanged(state, action.screenName);
 
     default:
       return state

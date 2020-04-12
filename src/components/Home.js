@@ -1,9 +1,13 @@
 import React from 'react';
+import { bindActionCreators } from 'redux'
 
-import ModalWrapper from "../libraries/ModalWrapper";
+import * as myActions from '../actions/index';
+import {screenNames} from "../constants/appConstants";
+
 
 import {createMuiTheme, withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import {connect} from "react-redux";
 const theme = createMuiTheme();
 const styles = {
     margin: {
@@ -18,37 +22,11 @@ class Home extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            openModal: null,
-        }
-    }
-    handleButtonClicked=(buttonName,oEvent)=>{
-        this.setState({
-            openModal:buttonName
-        })
     }
 
-    handleModalClose=()=>{
-        this.setState({
-            openModal:null
-        })
-    }
-
-    getModalView=()=>{
-        let body = null;
-        if(this.state.openModal === "classifications"){
-            body=<div> class body </div>
-        }else if(this.state.openModal === "classifications"){
-            body=<div> ext body </div>
-        }
-
-        return (
-            <ModalWrapper
-                open={!!body}
-                onClose={this.handleModalClose}>
-                {body}
-            </ModalWrapper>
-        )
+    handleButtonClicked=(sScreenName,oEvent)=>{
+        oEvent.stopPropagation();
+        this.props.dispatch(myActions.handleScreenChanged(sScreenName));
     }
 
     render() {
@@ -56,19 +34,17 @@ class Home extends React.Component {
 
         return (
             <div className="buttonWrapper">
-
-                {this.getModalView()}
                 <Button variant="contained"
                         size="large"
                         className={classes.margin}
-                        onClick={this.handleButtonClicked.bind(this, "classifications")}
+                        onClick={this.handleButtonClicked.bind(this, screenNames.CLASSIFICATION)}
                 >
                     Classification
                 </Button>
                 <Button variant="contained"
                         size="large"
                         className={classes.margin}
-                        onClick={this.handleButtonClicked.bind(this, "extractions")}
+                        onClick={this.handleButtonClicked.bind(this, screenNames.EXTRACTION)}
                 >
                     Extraction
                 </Button>
@@ -77,4 +53,13 @@ class Home extends React.Component {
     }
 }
 
-export default withStyles(styles)(Home);
+function mapStateToProps(state) {
+    return state;
+}
+function mapDispatchToProps(dispatch) {
+    let actions = bindActionCreators({ homeButtonClicked: myActions.handleScreenChanged });
+    return { ...actions, dispatch };
+}
+
+const ConnectedView = connect(mapStateToProps, mapDispatchToProps)(Home);
+export default withStyles(styles)(ConnectedView)
