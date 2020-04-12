@@ -44,7 +44,7 @@ class NavBar extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <div className={"appContainer"} style={{ backgroundColor: 800 }}>
+            <div className={"navBar"} style={{ backgroundColor: 800 }}>
                 <AppBar position="static">
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
