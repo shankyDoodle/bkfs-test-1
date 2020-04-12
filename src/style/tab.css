@@ -1,6 +1,6 @@
 .tabViewWrapper {
-    height: calc(100% - 40px);
-    width: calc(100% - 40px);
+    height: 100%;
+    width: 100%;
     padding: 20px;
 }
 
@@ -10,10 +10,13 @@
     float: left;
 }
 
+.ant-tabs{
+    height: 100% !important;
+}
 
 [data-theme='compact'] .card-container > .ant-tabs-card > .ant-tabs-content,
 .card-container > .ant-tabs-card > .ant-tabs-content {
-    height: 120px;
+    height: calc(100% - 40px) !important;
     margin-top: -16px;
 }
 
@@ -21,6 +24,7 @@
 .card-container > .ant-tabs-card > .ant-tabs-content > .ant-tabs-tabpane {
     background: #fff;
     padding: 16px;
+    height: 100% !important;
 }
 
 [data-theme='compact'] .card-container > .ant-tabs-card > .ant-tabs-bar,
