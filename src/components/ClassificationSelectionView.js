@@ -7,6 +7,8 @@ import * as myActions from "../actions";
 import {connect} from "react-redux";
 import {Button, Divider} from 'antd';
 
+import {dropdownTypes} from "../constants/appConstants";
+
 class ClassificationSelectionView extends React.Component {
 
     createDropDownListModel(data) {
@@ -20,26 +22,32 @@ class ClassificationSelectionView extends React.Component {
     }
 
     handleClassificationDropDownOnBlur=(dropdownButtonType, selectedItems)=>{
-        console.log(dropdownButtonType, selectedItems);
+        this.props.dispatch(myActions.handleClassificationDropDownOnBlur(dropdownButtonType, selectedItems));
+    }
+
+    handleCreateButtonClicked=()=>{
+        this.props.dispatch(myActions.handleClassificationCreateButtonCLicked());
     }
 
     getCustomerDropdownView(){
         let aDropDownListModel = this.createDropDownListModel(this.props.customerList)
         return <MSSView
+            key={dropdownTypes.CUSTOMER_NAMES}
             label={"Customer Names"}
             childElements={aDropDownListModel}
-            onBlur={this.handleClassificationDropDownOnBlur.bind(this, "customerList")}
+            onBlur={this.handleClassificationDropDownOnBlur.bind(this, dropdownTypes.CUSTOMER_NAMES)}
             isMultiple={true}
             allowClear={true}
             selectAll={true}/>
     }
 
     getDocumentDropdownView(){
-        let aDropDownListModel = this.createDropDownListModel(this.props.customerData)
+        let aDropDownListModel = this.createDropDownListModel(this.props.documentTypes)
         return <MSSView
+            key={dropdownTypes.DOCUMENT_TYPES}
             label={"Document Types"}
             childElements={aDropDownListModel}
-            onBlur={this.handleClassificationDropDownOnBlur.bind(this, "customerData")}
+            onBlur={this.handleClassificationDropDownOnBlur.bind(this, dropdownTypes.DOCUMENT_TYPES)}
             isMultiple={true}
             allowClear={true}
             selectAll={true}/>
@@ -56,11 +64,10 @@ class ClassificationSelectionView extends React.Component {
                     <div className={"documentTypeDropdown"}>
                         {this.getDocumentDropdownView()}
                     </div>
+                    <Divider/>
                 </div>
-
-                <Divider/>
                 <div className={"buttonFooter"}>
-                    <Button>Create</Button>
+                    <Button onClick={this.handleCreateButtonClicked}>Create</Button>
                 </div>
             </div>
         );

@@ -46,8 +46,8 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    // let actions = bindActionCreators({ homeButtonClicked: myActions.handleScreenChanged });
-    // return { ...actions, dispatch };
+    // let appActions = bindActionCreators({ homeButtonClicked: myActions.handleScreenChanged });
+    // return { ...appActions, dispatch };
     return {}
 }
 

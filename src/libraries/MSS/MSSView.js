@@ -13,7 +13,6 @@ class MSSView extends React.Component {
     }
 
     handleChange=(values)=>{
-        console.log(`selected ${values}`);
         this.selected = values
         // if(values.includes("selectAll")){
         //     this.handleBlur();
@@ -78,8 +77,8 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    // let actions = bindActionCreators({ homeButtonClicked: myActions.handleScreenChanged });
-    // return { ...actions, dispatch };
+    // let appActions = bindActionCreators({ homeButtonClicked: myActions.handleScreenChanged });
+    // return { ...appActions, dispatch };
     return {}
 }
 

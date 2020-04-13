@@ -4,15 +4,16 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import {createStore} from 'redux'
 
 import "antd/dist/antd.css";
-import './style/index.css'
-import './style/classification.css'
-import './style/tab.css'
+import './style/style-index.css'
+import './style/style-classification.css'
+import './style/style-tab.css'
+import './libraries/editabletable/style-editable-table.scss'
 
 import App from './components/App'
 
 
 import getInitialState from './reducers/initial-state';
-import reducer from './reducers'
+import reducer from './reducers/reducer-index'
 import {Provider} from "react-redux";
 
 const state = getInitialState();
