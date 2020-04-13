@@ -1,0 +1,35 @@
+.pdfViewerContainer {
+
+    float: left;
+    height: 100%;
+    width: 100%;
+
+
+    .documentWrapper {
+
+    }
+
+
+    .navigationWrapper {
+        width: 100%;
+        height: 30px;
+        position: sticky;
+        float: right;
+        bottom: 0px;
+        /* right: 0px; */
+        background: white;
+        padding-top: 5px;
+        padding-left: calc(50% - 50px);
+
+        &.noDisplay{
+            display: none;
+        }
+
+        .navChild {
+            float: left;
+            margin: 0 5px;
+        }
+    }
+
+
+}

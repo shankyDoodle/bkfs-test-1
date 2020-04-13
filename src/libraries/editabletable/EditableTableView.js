@@ -3,13 +3,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {Button, Empty, Popover} from 'antd';
 import { CSVLink, CSVDownload } from "react-csv";
-
-const csvData = [
-    ["firstname", "lastname", "email"],
-    ["Ahmed", "Tomi", "ah@smthing.co.com"],
-    ["Raed", "Labes", "rl@smthing.co.com"],
-    ["Yezzi", "Min l3b", "ymin@cocococo.com"]
-];
+import PDFView from "../PDFView/PDFView";
 
 class EditableTable extends React.Component {
 
@@ -38,7 +32,12 @@ class EditableTable extends React.Component {
         this.props.onTableCellDataChanged(customerName, docName, newVal);
     }
 
-    getPDFViewerView=(docName)=>{
+    getPDFViewerView=(document)=>{
+        return (
+            <div className={"gridPDFViewWrapper"}>
+                <PDFView document={document}/>
+            </div>
+        )
 
     }
 
@@ -51,6 +50,7 @@ class EditableTable extends React.Component {
         for(let doc of aTableData){
             let aTds = [];
             let docName = doc.documentName;
+            let docFile = doc.file;
             let oTableData = doc.rowData;
 
             for(let i=0;i<aColumnsToRender.length;i++){
@@ -60,7 +60,7 @@ class EditableTable extends React.Component {
                 let oView = null;
                 if(i===0){
                     oView = (
-                        <Popover content={this.getPDFViewerView(docName)}>
+                        <Popover title={docName} content={this.getPDFViewerView(docFile)}>
                             <div key={i} className={"tableFixedColumn"}
                                  onMouseOver={this.handleMouseOver.bind(this, docName)}>{docName}</div>
                         </Popover>

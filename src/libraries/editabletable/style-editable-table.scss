@@ -99,3 +99,14 @@
     }
 }
 
+.gridPDFViewWrapper {
+    max-height: 500px;
+    width: auto;
+    overflow: auto;
+
+    .pdfViewerContainer {
+        float: left;
+        height: 100%;
+        width: 100%;
+    }
+}

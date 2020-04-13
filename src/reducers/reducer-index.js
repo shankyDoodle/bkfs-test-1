@@ -9,13 +9,9 @@ function handleScreenChanged(state, sScreenName) {
 
     let oRet = {...state}
     if (sScreenName === screenNames.CLASSIFICATION) {
-        let customerList = classification.fetchCustomerList();
-        let documentTypes = classification.fetchDocumentTypes();
-        Object.assign(oRet, {customerList, documentTypes});
+        classification.switchToClassificationScreen(oRet);
     }
-
     Object.assign(oRet, {currentScreen: sScreenName});
-
     return oRet
 }
 

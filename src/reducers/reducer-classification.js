@@ -25,6 +25,12 @@ export default {
         return documentTypes;
     },
 
+    switchToClassificationScreen: function(oRet){
+        let customerList = this.fetchCustomerList();
+        let documentTypes = this.fetchDocumentTypes();
+        Object.assign(oRet, {customerList, documentTypes});
+    },
+
     handleClassificationDropDownOnBlur: function (state, dropdownType, selectedItems) {
         let oRet = {...state}
         if (dropdownType === appConstants.dropdownTypes.CUSTOMER_NAMES) {
@@ -59,11 +65,19 @@ export default {
         return aData;
     },
 
+    fetchSampleFiles: function(){
+      //TODO: ideally fetch files from server
+      return documentTypes;
+    },
+
     handleClassificationCreateButtonCLicked: function (state) {
         let customerData = this.fetchCustomerData();
+        let oSampleFiles = this.fetchSampleFiles();
+
         let selectedDocuments = state.selectedDocuments;
         let selectedCustomers = state.selectedCustomers;
 
+        let sFilePrefix = "./pdfs/";
 
         let aHeaderData = [];
         aHeaderData.push({label: "Document Types"});
@@ -82,6 +96,7 @@ export default {
             let temp = {};
             temp["documentName"] = doc;
             temp["rowData"] = values
+            temp["file"] = sFilePrefix + oSampleFiles[doc];
             aBodyData.push(temp);
         }
 

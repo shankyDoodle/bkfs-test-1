@@ -9,7 +9,6 @@ import MSSView from "../libraries/MSS/MSSView";
 import ClassificationSelectionView from "./ClassificationSelectionView"
 import EditableTable from "../libraries/editabletable/EditableTableView";
 
-
 class ClassificationView extends React.Component {
 
     handleTableCellDataChanged=(customerName, docName, newVal)=>{
