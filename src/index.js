@@ -3,9 +3,11 @@ import {render} from 'react-dom'
 import {BrowserRouter as Router} from 'react-router-dom'
 import {createStore} from 'redux'
 
-import './style/index.css'
-import './style/tab.css'
 import "antd/dist/antd.css";
+import './style/index.css'
+import './style/classification.css'
+import './style/tab.css'
+
 import App from './components/App'
 
 

@@ -21,7 +21,7 @@ class MSSView extends React.Component {
     }
 
     handleBlur=()=>{
-        this.props.handleBlur(this.selected);
+        this.props.onBlur(this.selected);
     }
 
     getChildren(){
@@ -31,7 +31,7 @@ class MSSView extends React.Component {
         }
 
         for (let item of this.props.childElements) {
-            children.push(<Option key={item.id}>{item.label}</Option>);
+            children.push(<Option key={item.label}>{item.label}</Option>);
         }
         return children;
     }
@@ -39,9 +39,10 @@ class MSSView extends React.Component {
     render() {
         return (
             <div className={"mssViewWrapper"}>
+                <div className={"mssLabel"}>{this.props.label}</div>
                 <Select
                     allowClear={!!this.props.allowClear}
-                    mode={!!this.props.isMultiple}
+                    mode={!!this.props.isMultiple ? "multiple" : ""}
                     style={{ width: '100%' }}
                     placeholder="Please select"
                     defaultValue={this.props.selected || []}
@@ -57,9 +58,13 @@ class MSSView extends React.Component {
 
 
 MSSView.propTypes={
+    label:PropTypes.string,
     onBlur: PropTypes.func.isRequired,
     childElements: PropTypes.arrayOf(PropTypes.shape({
-        id:PropTypes.string,
+        id:PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+        ]),
         label:PropTypes.string
     })).isRequired,
     selected: PropTypes.array,

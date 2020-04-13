@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import {screenNames} from "../constants/appConstants";
 import Home from './Home'
 
-import Classification from './Classification'
+import Classification from './ClassificationView'
 import Extraction from './Extraction'
 import NavBar from './NavBar'
 import {bindActionCreators} from "redux";

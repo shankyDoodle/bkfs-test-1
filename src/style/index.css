@@ -21,17 +21,18 @@ code {
 }
 
 #root {
-  width: 90%;
-  height: calc(100% - 140px);
-  margin: 70px 5%;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  margin: 20px;
 }
 
 .appContainer {
   float: left;
   height: 100%;
   width: 100%;
-  background: #e6e6e6;
-  box-shadow: 0px 0px 177px -26px rgba(0, 0, 0, 0.45);
+  /*background: #e6e6e6;*/
+  background: #efefef;
+  /*box-shadow: 0px 0px 177px -26px rgba(0, 0, 0, 0.45);*/
 }
 
 .buttonWrapper{
