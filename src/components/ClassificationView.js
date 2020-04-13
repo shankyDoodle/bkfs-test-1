@@ -12,13 +12,7 @@ import EditableTable from "../libraries/editabletable/EditableTableView";
 
 class ClassificationView extends React.Component {
 
-    getTableViewData(){
-        let oTableData = this.props.classificationTableData
-
-    }
-
     getTabBody() {
-        let oTableViewData = this.getTableViewData();
         return (
             <div className={"classificationScreen"}>
                 <div className={"leftPanel"}>

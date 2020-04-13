@@ -12,6 +12,13 @@
     border-right: 1px solid #eaeaea;
 }
 
+.rightPanel {
+    width: 75%;
+    height: 100%;
+    float: left;
+    position: relative;
+}
+
 
 .classificationSelectionContainer {
     width: 100%;

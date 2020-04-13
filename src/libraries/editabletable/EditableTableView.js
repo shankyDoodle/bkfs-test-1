@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import { Empty } from 'antd';
 
 class EditableTable extends React.Component {
 
@@ -67,7 +68,7 @@ class EditableTable extends React.Component {
 
     render() {
         if(!this.props.headerData || !this.props.headerData.length){
-            return <div> Nothing to dislpay</div>
+            return <div className={"empty"}><Empty /></div>
         }
         return (
             <div className={"gridTableContainerWrapper"}>
