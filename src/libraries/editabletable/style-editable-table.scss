@@ -8,121 +8,83 @@
     width: 100%;
 }
 
-.contentGridViewContainer {
-    height: 100%;
-    background-image: linear-gradient(#f8f8f8, #fafafa);
-}
+.gridTableContainer{
 
-.gridTableContainerWrapper {
-    width: auto;
-    height: calc(100% - 30px);
-    background: #fcfcfc;
-    margin: 15px;
-    border: 1px solid #eaeaea;
-    overflow: auto;
 
-    .gridTableContainer {
-        padding: 10px;
-        display: inline-block;
-        float: left;
+    .gridSaveDiscardContainer {
+        height: 47px;
+        text-align: right;
+        width: 100%;
+        padding: 15px 15px 0 15px;
 
-        .gridTableHeader {
-            th {
-                min-width: 150px;
-                border: 1px solid #eee;
-                padding: 5px 10px;
-                /*position: relative;*/
-                background: #fafafa;
-                font-weight: 500;
-                text-align: center;
-            }
-
-            .gridViewHeaderWrapper {
-                overflow: hidden;
-
-                .gridViewHeaderText {
-                    width: calc(100% - 40px);
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    float: left;
-                }
-
-                &:hover {
-                    .gridViewHeaderMoveRight, .gridViewHeaderMoveLeft {
-                        opacity: .5;
-                    }
-                }
-            }
+        .buttonClass {
+            float: right;
+            margin: 0 5px;
         }
+    }
 
-        .gridTableBody {
+    .gridTableContainerWrapper {
+        width: auto;
+        height: calc(100% - 30px - 47px);
+        background: #fcfcfc;
+        margin: 15px;
+        border: 1px solid #eaeaea;
+        overflow: auto;
 
-            tr {
-                background-color: #fff;
+        .gridTableContainer {
+            padding: 10px;
+            display: inline-block;
+            float: left;
 
-                &.dirty {
-                    background-color: #fdf9ce;
+            .gridTableHeader {
+                th {
+                    min-width: 150px;
+                    border: 1px solid #eee;
+                    padding: 5px 10px;
+                    /*position: relative;*/
+                    background: #fafafa;
+                    font-weight: 500;
+                    text-align: center;
                 }
-            }
 
-            td {
-                min-width: 150px;
-                border: 1px solid #eee;
-                padding: 5px 10px;
-                /*position: relative;*/
-            }
-
-            .multiSelectSearchLabel {
-                display: none;
-            }
-
-            .tagsSectionHeader {
-                display: none;
-            }
-
-            .searchBarView {
-                min-height: auto;
-            }
-
-            .tagsSectionBody {
-                border-bottom: 0;
-                padding: 0;
-                width: 180px;
-
-                .customTreeNodeWrapper {
-                    padding: 0 0 2px 0;
-                    border: none;
-                    border-radius: 0;
-                    margin: 0 0 2px 0;
+                .gridViewHeaderWrapper {
                     overflow: hidden;
-                    box-shadow: 0 1px 0 0 #ddd;
 
-                    .tagName {
-                        &.fullLengthTagName {
-                            width: 100%;
-                            background: transparent;
-                            margin-bottom: 0;
-                            text-align: left;
-                            font-size: 10px;
-                            color: #777;
-                            font-weight: 500;
-                            padding: 0 13px;
-                        }
+                    .gridViewHeaderText {
+                        width: calc(100% - 40px);
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        float: left;
                     }
 
-                    .tagDetail {
-                        &.fullLengthTagDetail {
-                            text-align: left;
+                    &:hover {
+                        .gridViewHeaderMoveRight, .gridViewHeaderMoveLeft {
+                            opacity: .5;
                         }
                     }
                 }
             }
 
-            .gridElementError {
-                color: #e57373;
-                font-size: 10px;
+            .gridTableBody {
+
+                tr {
+                    background-color: #fff;
+
+                    &.dirty {
+                        background-color: #fdf9ce;
+                    }
+                }
+
+                td {
+                    min-width: 150px;
+                    border: 1px solid #eee;
+                    padding: 5px 10px;
+                    /*position: relative;*/
+                }
+
             }
         }
     }
 }
+

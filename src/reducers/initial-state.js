@@ -6,8 +6,10 @@ export default function getInitialState() {
     let oDocumentTypes = {};
     let aSelectedDocuments =[];
     let oCustomerData = {};
+    let oCustomerDataCloned = null;
 
     let oClassificationTableData = {};
+    let oClassificationTableDataCloned = null;
 
     return {
         currentScreen: sCurrentScreen,
@@ -16,6 +18,8 @@ export default function getInitialState() {
         documentTypes: oDocumentTypes,
         selectedDocuments:aSelectedDocuments,
         customerData: oCustomerData,
+        customerDataCloned: oCustomerDataCloned,
         classificationTableData: oClassificationTableData,
+        classificationTableDataCloned: oClassificationTableDataCloned,
     }
 }

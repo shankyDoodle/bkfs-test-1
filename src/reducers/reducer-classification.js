@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 import {
     customerList,
     customerData,
@@ -5,9 +7,10 @@ import {
 } from "../mockdata/mockData";
 
 import * as appConstants from '../constants/appConstants';
+import {Utils} from '../utils/utils';
 
 export default {
-    fetchCustomerList: function() {
+    fetchCustomerList: function () {
         //implement server call here fro customer list
         return customerList;
     },
@@ -24,10 +27,10 @@ export default {
 
     handleClassificationDropDownOnBlur: function (state, dropdownType, selectedItems) {
         let oRet = {...state}
-        if(dropdownType === appConstants.dropdownTypes.CUSTOMER_NAMES){
-            Object.assign(oRet, {selectedCustomers:selectedItems});
-        }else{
-            Object.assign(oRet, {selectedDocuments:selectedItems});
+        if (dropdownType === appConstants.dropdownTypes.CUSTOMER_NAMES) {
+            Object.assign(oRet, {selectedCustomers: selectedItems});
+        } else {
+            Object.assign(oRet, {selectedDocuments: selectedItems});
         }
         return oRet;
     },
@@ -39,17 +42,17 @@ export default {
 
 
         let oHeaderData = [];
-        oHeaderData.push({label:"Document Types"});
-        for(let customer of selectedCustomers){
-            oHeaderData.push({label:customer});
+        oHeaderData.push({label: "Document Types"});
+        for (let customer of selectedCustomers) {
+            oHeaderData.push({label: customer});
         }
 
         let aBodyData = [];
-        for(let doc of selectedDocuments){
+        for (let doc of selectedDocuments) {
             let values = {}
             values["Document Types"] = doc
 
-            for(let customer of selectedCustomers){
+            for (let customer of selectedCustomers) {
                 values[customer] = customerData[customer][doc]
             }
             let temp = {};
@@ -59,17 +62,54 @@ export default {
         }
 
 
-
         let oTableData = {
-            headerData:oHeaderData,
-            bodyData:aBodyData
+            headerData: oHeaderData,
+            bodyData: aBodyData
         }
 
         return {
             ...state,
             customerData,
-            classificationTableData:oTableData
+            classificationTableData: oTableData
         }
+    },
+
+
+    handleTableCellDataChanged: function (state, customerName, docName, newVal) {
+
+        //update database
+        let customerDataCloned = Utils.getDirtyData(state.customerData);
+        customerDataCloned[customerName][docName] = newVal;
+
+        //update table data
+        let tableDataCloned = Utils.getDirtyData(state.classificationTableData);
+        let bodyData = tableDataCloned.bodyData
+        let editedRowIndex = _.findIndex(bodyData, function (o) {
+            return o.documentName === docName;
+        });
+        let editedRowData = bodyData[editedRowIndex].rowData;
+        editedRowData[customerName] = newVal;
+
+        return {
+            ...state,
+            customerDataCloned,
+            classificationTableDataCloned: tableDataCloned
+        }
+    },
+
+    handleTableSaveDiscardClicked: function (state, buttonType) {
+        let oRet = {...state}
+
+        if(buttonType === "save"){
+            let customerData = state.customerDataCloned,
+                classificationTableData = state.classificationTableDataCloned;
+            Object.assign(oRet, {customerData, classificationTableData});
+
+            //TODO: handle any server calls to update Database
+        }
+
+        Object.assign(oRet, {customerDataCloned:null, classificationTableDataCloned:null});
+        return oRet;
     }
 
 }

@@ -12,7 +12,18 @@ import EditableTable from "../libraries/editabletable/EditableTableView";
 
 class ClassificationView extends React.Component {
 
+    handleTableCellDataChanged=(customerName, docName, newVal)=>{
+        this.props.dispatch(myActions.handleTableCellDataChanged(customerName, docName, newVal));
+    }
+
+    handleTableSaveDiscardClicked=(buttonType)=>{
+        this.props.dispatch(myActions.handleTableSaveDiscardClicked(buttonType));
+    }
+
     getTabBody() {
+        let tableData = this.props.classificationTableDataCloned ?
+            this.props.classificationTableDataCloned : this.props.classificationTableData
+
         return (
             <div className={"classificationScreen"}>
                 <div className={"leftPanel"}>
@@ -20,8 +31,11 @@ class ClassificationView extends React.Component {
                 </div>
                 <div className={"rightPanel"}>
                     <EditableTable
-                        headerData={this.props.classificationTableData.headerData}
-                        tableData={this.props.classificationTableData.bodyData}
+                        headerData={tableData.headerData}
+                        tableData={tableData.bodyData}
+                        onTableCellDataChanged={this.handleTableCellDataChanged}
+                        onSave={this.handleTableSaveDiscardClicked.bind(this, "save")}
+                        onDiscard={this.handleTableSaveDiscardClicked.bind(this, "discard")}
                     />
                 </div>
             </div>

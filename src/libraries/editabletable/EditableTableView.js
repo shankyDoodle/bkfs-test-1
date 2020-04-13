@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import { Empty } from 'antd';
+import {Button, Empty, Popover} from 'antd';
+import * as myActions from "../../actions";
 
 class EditableTable extends React.Component {
 
@@ -26,6 +27,11 @@ class EditableTable extends React.Component {
     }
 
     handleTextChanged=(customerName, docName, e)=>{
+        let newVal = e.target.value;
+        this.props.onTableCellDataChanged(customerName, docName, newVal);
+    }
+
+    getPDFViewerView=(docName)=>{
 
     }
 
@@ -47,35 +53,69 @@ class EditableTable extends React.Component {
                 let oView = null;
                 if(i===0){
                     oView = (
-                        <div className={"tableFixedColumn"}
-                             onMouseOver={this.handleMouseOver.bind(this, docName)}>{docName}</div>
+                        <Popover content={this.getPDFViewerView(docName)}>
+                            <div key={i} className={"tableFixedColumn"}
+                                 onMouseOver={this.handleMouseOver.bind(this, docName)}>{docName}</div>
+                        </Popover>
                     )
                 }else{
                     oView = (
-                        <input value={val}
+                        <input  key={i} value={val}
                                onChange={this.handleTextChanged.bind(this, customerName, docName)}/>);
                 }
 
-                aTds.push(<td>
+                aTds.push(<td key={Math.random()}>
                     <div>{oView}</div>
                 </td>);
             }
-            aTrs.push(<tr className={"rowTest"}>{aTds}</tr>)
+            aTrs.push(<tr key={Math.random()} className={"rowTest"}>{aTds}</tr>)
         }
 
         return aTrs;
     }
 
+    handleSaveButtonCLicked=()=>{
+        this.props.onSave();
+    }
+
+    handleDiscardButtonClicked=()=>{
+        this.props.onDiscard();
+    }
+
+    getSaveDiscardButtons(){
+        let aButtons = [];
+        let oSaveView = (
+            <div className={"SaveButton buttonClass"}>
+                <Button onClick={this.handleSaveButtonCLicked}>Save</Button>
+            </div>
+        )
+        aButtons.push(oSaveView);
+
+        if(this.props.classificationTableData.isDirty){
+            let oDiscardView = (
+                <div className={"discardButton buttonClass"}>
+                    <Button onClick={this.handleDiscardButtonClicked}>Discard</Button>
+                </div>
+            )
+            aButtons.push(oDiscardView)
+        }
+        return aButtons;
+    }
     render() {
         if(!this.props.headerData || !this.props.headerData.length){
             return <div className={"empty"}><Empty /></div>
         }
         return (
-            <div className={"gridTableContainerWrapper"}>
-                <table className="gridTableContainer">
-                    <thead className="gridTableHeader">{this.getTableHeader()}</thead>
-                    <tbody className="gridTableBody">{this.getTableBody()}</tbody>
-                </table>
+            <div className={"gridTableContainer"}>
+                <div className={"gridSaveDiscardContainer"}>
+                    {this.getSaveDiscardButtons()}
+                </div>
+                <div className={"gridTableContainerWrapper"}>
+                    <table className="gridTableContainer">
+                        <thead className="gridTableHeader">{this.getTableHeader()}</thead>
+                        <tbody className="gridTableBody">{this.getTableBody()}</tbody>
+                    </table>
+                </div>
             </div>
         )
     }
@@ -85,6 +125,9 @@ class EditableTable extends React.Component {
 EditableTable.propTypes={
     tableData:PropTypes.array,
     headerData:PropTypes.array,
+    onTableCellDataChanged:PropTypes.func,
+    onSave:PropTypes.func,
+    onDiscard:PropTypes.func,
 }
 
 function mapStateToProps(state) {
