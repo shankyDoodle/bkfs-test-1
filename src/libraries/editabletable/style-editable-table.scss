@@ -20,7 +20,18 @@
         .buttonClass {
             float: right;
             margin: 0 5px;
+
+            &.exportButton{
+                float: left;
+                margin: 0;
+            }
+
+            &.saveButton{
+                margin-right: 0;
+            }
         }
+
+
     }
 
     .gridTableContainerWrapper {

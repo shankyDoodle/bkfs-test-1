@@ -35,16 +35,40 @@ export default {
         return oRet;
     },
 
+    createCSVData: function(oTableData){
+        let aData = [];
+
+        let aHeaderData = oTableData.headerData;
+        let aHeaderDataRow = [];
+        for (let header of aHeaderData) {
+            aHeaderDataRow.push(header.label);
+        }
+        aData.push(aHeaderDataRow);
+
+
+        let aBodyData = oTableData.bodyData;
+        _.forEach(aBodyData, function (oData) {
+            let oRowData = oData.rowData;
+            let row = [];
+            for (let header of aHeaderData) {
+                row.push(oRowData[header.label]);
+            }
+            aData.push(row);
+        })
+
+        return aData;
+    },
+
     handleClassificationCreateButtonCLicked: function (state) {
         let customerData = this.fetchCustomerData();
         let selectedDocuments = state.selectedDocuments;
         let selectedCustomers = state.selectedCustomers;
 
 
-        let oHeaderData = [];
-        oHeaderData.push({label: "Document Types"});
+        let aHeaderData = [];
+        aHeaderData.push({label: "Document Types"});
         for (let customer of selectedCustomers) {
-            oHeaderData.push({label: customer});
+            aHeaderData.push({label: customer});
         }
 
         let aBodyData = [];
@@ -63,14 +87,17 @@ export default {
 
 
         let oTableData = {
-            headerData: oHeaderData,
+            headerData: aHeaderData,
             bodyData: aBodyData
         }
+
+        let aCSVData = this.createCSVData(oTableData);
 
         return {
             ...state,
             customerData,
-            classificationTableData: oTableData
+            classificationTableData: oTableData,
+            csvData: aCSVData
         }
     },
 
@@ -90,10 +117,13 @@ export default {
         let editedRowData = bodyData[editedRowIndex].rowData;
         editedRowData[customerName] = newVal;
 
+        let aCSVData = this.createCSVData(tableDataCloned);
+
         return {
             ...state,
             customerDataCloned,
-            classificationTableDataCloned: tableDataCloned
+            classificationTableDataCloned: tableDataCloned,
+            csvData: aCSVData
         }
     },
 

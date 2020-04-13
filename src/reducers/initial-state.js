@@ -11,6 +11,8 @@ export default function getInitialState() {
     let oClassificationTableData = {};
     let oClassificationTableDataCloned = null;
 
+    let aCSVData = []
+
     return {
         currentScreen: sCurrentScreen,
         customerList: oCustomerList,
@@ -21,5 +23,6 @@ export default function getInitialState() {
         customerDataCloned: oCustomerDataCloned,
         classificationTableData: oClassificationTableData,
         classificationTableDataCloned: oClassificationTableDataCloned,
+        csvData:aCSVData
     }
 }

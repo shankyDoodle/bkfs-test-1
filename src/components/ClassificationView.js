@@ -36,6 +36,7 @@ class ClassificationView extends React.Component {
                         onTableCellDataChanged={this.handleTableCellDataChanged}
                         onSave={this.handleTableSaveDiscardClicked.bind(this, "save")}
                         onDiscard={this.handleTableSaveDiscardClicked.bind(this, "discard")}
+                        csvData={this.props.csvData}
                     />
                 </div>
             </div>

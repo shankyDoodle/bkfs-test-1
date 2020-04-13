@@ -2,7 +2,14 @@ import React from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {Button, Empty, Popover} from 'antd';
-import * as myActions from "../../actions";
+import { CSVLink, CSVDownload } from "react-csv";
+
+const csvData = [
+    ["firstname", "lastname", "email"],
+    ["Ahmed", "Tomi", "ah@smthing.co.com"],
+    ["Raed", "Labes", "rl@smthing.co.com"],
+    ["Yezzi", "Min l3b", "ymin@cocococo.com"]
+];
 
 class EditableTable extends React.Component {
 
@@ -84,8 +91,15 @@ class EditableTable extends React.Component {
 
     getSaveDiscardButtons(){
         let aButtons = [];
+        let oExportView = (
+            <div className={"exportButton buttonClass"}>
+                <Button><CSVLink data={this.props.csvData}>Export</CSVLink></Button>
+            </div>
+        );
+        aButtons.push(oExportView);
+
         let oSaveView = (
-            <div className={"SaveButton buttonClass"}>
+            <div className={"saveButton buttonClass"}>
                 <Button onClick={this.handleSaveButtonCLicked}>Save</Button>
             </div>
         )
@@ -125,6 +139,7 @@ class EditableTable extends React.Component {
 EditableTable.propTypes={
     tableData:PropTypes.array,
     headerData:PropTypes.array,
+    csvData:PropTypes.array,
     onTableCellDataChanged:PropTypes.func,
     onSave:PropTypes.func,
     onDiscard:PropTypes.func,
