@@ -1,15 +1,29 @@
-import getInitialState from "./initial-state";
+import {getInitialState, defaultState} from "./initial-state";
 
 import {screenNames} from "../constants/appConstants";
 import * as appActions from '../actions'
 
 import classification from "./reducer-classification";
+import extraction from "./reducer-extraction";
 
+
+
+function resetToInitialState(oRet) {
+    Object.assign(oRet, {...defaultState});
+}
 function handleScreenChanged(state, sScreenName) {
-
     let oRet = {...state}
-    if (sScreenName === screenNames.CLASSIFICATION) {
-        classification.switchToClassificationScreen(oRet);
+
+    switch(sScreenName){
+        case screenNames.CLASSIFICATION:
+            classification.switchToClassificationScreen(oRet);
+            break;
+        case screenNames.EXTRACTION:
+            extraction.switchToExtractionScreen(oRet)
+            break;
+        case screenNames.HOME:
+        default:
+            resetToInitialState(oRet)
     }
     Object.assign(oRet, {currentScreen: sScreenName});
     return oRet

@@ -4,12 +4,6 @@
     padding: 20px;
 }
 
-.tabLabelWrapper {
-    height: 42px;
-    width: 100%;
-    float: left;
-}
-
 .ant-tabs{
     height: 100% !important;
 }
@@ -42,4 +36,5 @@
 .card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
     border-color: #fff;
     background: #fff;
+    color: #595959;
 }
