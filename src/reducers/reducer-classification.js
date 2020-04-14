@@ -136,8 +136,7 @@ export default {
 
         return {
             ...state,
-            customerDataCloned,
-            classificationTableDataCloned: tableDataCloned,
+            isScreenDirty:true,
             csvData: aCSVData
         }
     },
@@ -145,15 +144,29 @@ export default {
     handleTableSaveDiscardClicked: function (state, buttonType) {
         let oRet = {...state}
 
+        Object.assign(oRet, {isScreenDirty:false})
         if(buttonType === "save"){
-            let customerData = state.customerDataCloned,
-                classificationTableData = state.classificationTableDataCloned;
+            let customerData = state.customerData.clonedObject;
+            let classificationTableData = state.classificationTableData.clonedObject;
+
+            delete state.customerData.clonedObject
+            delete state.customerData.isDirty
+            delete state.classificationTableData.clonedObject;
+            delete state.classificationTableData.isDirty;
             Object.assign(oRet, {customerData, classificationTableData});
 
             //TODO: handle any server calls to update Database
+        }else {
+            let customerData = state.customerData;
+            let classificationTableData = state.classificationTableData;
+            Object.assign(oRet, {customerData, classificationTableData});
         }
 
-        Object.assign(oRet, {customerDataCloned:null, classificationTableDataCloned:null});
+        delete state.customerData.clonedObject
+        delete state.customerData.isDirty
+        delete state.classificationTableData.clonedObject;
+        delete state.classificationTableData.isDirty;
+
         return oRet;
     }
 

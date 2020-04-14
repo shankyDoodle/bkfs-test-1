@@ -20,8 +20,8 @@ class ClassificationView extends React.Component {
     }
 
     getTabBody() {
-        let tableData = this.props.classificationTableDataCloned ?
-            this.props.classificationTableDataCloned : this.props.classificationTableData
+        let tableData = this.props.classificationTableData.isDirty ?
+            this.props.classificationTableData.clonedObject : this.props.classificationTableData
 
         return (
             <div className={"classificationScreen"}>

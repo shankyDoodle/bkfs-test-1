@@ -1,5 +1,6 @@
 export default function getInitialState() {
     let sCurrentScreen = "HOME";
+    let isScreenDirty = false;
 
     let oCustomerList = {};
     let aSelectedCustomers = [];
@@ -23,6 +24,7 @@ export default function getInitialState() {
         customerDataCloned: oCustomerDataCloned,
         classificationTableData: oClassificationTableData,
         classificationTableDataCloned: oClassificationTableDataCloned,
-        csvData:aCSVData
+        csvData:aCSVData,
+        isScreenDirty: isScreenDirty,
     }
 }

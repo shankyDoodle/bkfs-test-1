@@ -23,10 +23,6 @@ class EditableTable extends React.Component {
     }
 
 
-    handleMouseOver=(docName, e)=>{
-
-    }
-
     handleTextChanged=(customerName, docName, e)=>{
         let newVal = e.target.value;
         this.props.onTableCellDataChanged(customerName, docName, newVal);
@@ -61,21 +57,20 @@ class EditableTable extends React.Component {
                 if(i===0){
                     oView = (
                         <Popover title={docName} content={this.getPDFViewerView(docFile)}>
-                            <div key={i} className={"tableFixedColumn"}
-                                 onMouseOver={this.handleMouseOver.bind(this, docName)}>{docName}</div>
+                            <div key={i} className={"tableFixedColumn"}>{docName}</div>
                         </Popover>
                     )
                 }else{
                     oView = (
-                        <input  key={i} value={val}
+                        <input  key={customerName+"%$$%"+docName} value={val}
                                onChange={this.handleTextChanged.bind(this, customerName, docName)}/>);
                 }
 
-                aTds.push(<td key={Math.random()}>
+                aTds.push(<td>
                     <div>{oView}</div>
                 </td>);
             }
-            aTrs.push(<tr key={Math.random()} className={"rowTest"}>{aTds}</tr>)
+            aTrs.push(<tr className={"rowTest"}>{aTds}</tr>)
         }
 
         return aTrs;
@@ -98,14 +93,14 @@ class EditableTable extends React.Component {
         );
         aButtons.push(oExportView);
 
-        let oSaveView = (
-            <div className={"saveButton buttonClass"}>
-                <Button onClick={this.handleSaveButtonCLicked}>Save</Button>
-            </div>
-        )
-        aButtons.push(oSaveView);
-
         if(this.props.classificationTableData.isDirty){
+            let oSaveView = (
+                <div className={"saveButton buttonClass"}>
+                    <Button onClick={this.handleSaveButtonCLicked}>Save</Button>
+                </div>
+            )
+            aButtons.push(oSaveView);
+
             let oDiscardView = (
                 <div className={"discardButton buttonClass"}>
                     <Button onClick={this.handleDiscardButtonClicked}>Discard</Button>
