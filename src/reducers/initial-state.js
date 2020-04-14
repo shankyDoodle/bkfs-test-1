@@ -8,6 +8,8 @@ let initialState = {
     classificationTableData: {},
     csvData:[],
     isScreenDirty: false,
+    groupedDocumentElements:[],
+    extractedSampleFile:null
 }
 
 export const defaultState = initialState;

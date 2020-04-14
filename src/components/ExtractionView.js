@@ -6,6 +6,7 @@ import * as myActions from "../actions";
 
 import TabView from "../libraries/TabView";
 import ExtractionSelectionView from "./ExtractionSelectionView"
+import ExtractionDetailsView from "./ExtractionDetailsView"
 
 class ExtractionView extends React.Component {
 
@@ -16,7 +17,7 @@ class ExtractionView extends React.Component {
                     <ExtractionSelectionView/>
                 </div>
                 <div className={"rightPanel"}>
-                    No data
+                    <ExtractionDetailsView />
                 </div>
             </div>
         )

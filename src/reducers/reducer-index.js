@@ -5,6 +5,7 @@ import * as appActions from '../actions'
 
 import classification from "./reducer-classification";
 import extraction from "./reducer-extraction";
+import {HANDLE_EXTRACTION_DROP_DOWN_ON_BLUR} from "../actions";
 
 
 
@@ -45,6 +46,12 @@ export default (state = getInitialState(), action) => {
 
         case appActions.HANDLE_TABLE_SAVE_DISCARD_CLICKED:
             return classification.handleTableSaveDiscardClicked(state, action.buttonType);
+
+        case appActions.HANDLE_EXTRACTION_DROP_DOWN_ON_BLUR:
+            return extraction.handleExtractionDropDownOnBlur(state, action.dropdownButtonType, action.selectedItems);
+
+        case appActions.HANDLE_EXTRACTION_CREATE_BUTTON_CLICKED:
+            return extraction.handleExtractionCreateButtonCLicked(state);
 
         default:
             return state

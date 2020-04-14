@@ -12,6 +12,7 @@ import "react-pdf/dist/Page/AnnotationLayer.css";
 import './style/style-index.scss'
 import './style/style-classification.scss'
 import './style/style-extraction.scss'
+import './style/style-extraction-details-view.scss'
 import './style/style-tab.scss'
 
 import './libraries/editabletable/style-editable-table.scss'

@@ -58,3 +58,43 @@ export let documentTypes={
     "Pay Stub": "",
     "W2": ""
 }
+
+
+export let groupedDocElements=[
+    {
+        groupId: 1,
+        dataElements: [
+            "DISBURSEMENT DATE",
+            "PREPAYMENT PENALTY",
+            "INITIAL PRINCIPAL",
+            "INTEREST RATE",
+            "LOAN AMOUNT",
+            "CLOSING DATE",
+            "LOAN AMORTIZATION",
+            "LOAN AMORTIZATION",
+            "DATE ISSUED",
+            "PURCHASE PRICE",
+            "INTEREST ONLY",
+        ]
+    },
+    {
+      groupId: 2,
+      dataElements: [
+          "PROPERTY ADDRESS LINE 2",
+          "CASH TO BORROWER AT",
+          "CASH FROM BORROWER AT",
+          "PROPERTY TAXES PROJECTED PAYMENT",
+          "HOMEOWNERS INSURANCE PROJECTED PAYMENT",
+      ]
+    },
+    {
+        groupId: 3,
+        dataElements:[
+            "PROPERTY ADDRESS ZIPCODE",
+            "PROPERTY ADDRESS CITY",
+            "PROPERTY ADDRESS LINE",
+            "PROPERTY ADDRESS LINE 1",
+            "PROPERTY ADDRESS STATE 2",
+        ]
+    }
+]

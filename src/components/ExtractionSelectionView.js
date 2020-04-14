@@ -20,12 +20,12 @@ class ExtractionSelectionView extends React.Component {
         return list;
     }
 
-    handleClassificationDropDownOnBlur=(dropdownButtonType, selectedItems)=>{
-        this.props.dispatch(myActions.handleClassificationDropDownOnBlur(dropdownButtonType, selectedItems));
+    handleExtractionDropDownOnBlur=(dropdownButtonType, selectedItems)=>{
+        this.props.dispatch(myActions.handleExtractionDropDownOnBlur(dropdownButtonType, selectedItems));
     }
 
     handleCreateButtonClicked=()=>{
-        this.props.dispatch(myActions.handleClassificationCreateButtonCLicked());
+        this.props.dispatch(myActions.handleExtractionCreateButtonCLicked());
     }
 
     getDocumentDropdownView(){
@@ -34,10 +34,7 @@ class ExtractionSelectionView extends React.Component {
             key={dropdownTypes.DOCUMENT_TYPES}
             label={"Document Types"}
             childElements={aDropDownListModel}
-            onBlur={this.handleClassificationDropDownOnBlur.bind(this, dropdownTypes.DOCUMENT_TYPES)}
-            isMultiple={true}
-            allowClear={true}
-            selectAll={true}/>
+            onBlur={this.handleExtractionDropDownOnBlur.bind(this, dropdownTypes.DOCUMENT_TYPES)}/>
     }
 
     render() {

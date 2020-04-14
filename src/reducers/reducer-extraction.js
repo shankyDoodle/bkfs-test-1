@@ -1,9 +1,8 @@
 import _ from 'lodash'
 
 import {
-    customerList,
-    customerData,
-    documentTypes
+    documentTypes,
+    groupedDocElements
 } from "../mockdata/mockData";
 
 import * as appConstants from '../constants/appConstants';
@@ -15,14 +14,52 @@ export default {
         return documentTypes;
     },
 
-    fetchSampleFile: function(){
-      //TODO: ideally fetch files from server
-      return documentTypes;
+    fetchSampleFile: function (docName) {
+        //TODO: ideally fetch files from server
+        return documentTypes[docName];
     },
 
-    switchToExtractionScreen: function(oRet){
+    fetchGroupedDocumentElementsByDocumentName: function (docName) {
+        //TODO: ideally fetch files from server
+        return groupedDocElements
+    },
+
+    switchToExtractionScreen: function (oRet) {
         let documentTypes = this.fetchDocumentTypes();
         Object.assign(oRet, {documentTypes});
     },
+
+    handleExtractionDropDownOnBlur: function (state, dropdownType, selectedItems) {
+        return {
+            ...state,
+            selectedDocuments: selectedItems
+        };
+    },
+
+    createSingleCSVData: function(aGroupedDocumentData){
+        let aData = [];
+        for(let oData of aGroupedDocumentData){
+            for(let dataElement of oData.dataElements){
+                aData.push([dataElement])
+            }
+        }
+        return aData;
+    },
+
+    handleExtractionCreateButtonCLicked: function (state) {
+        let sSelectedDoc = state.selectedDocuments[0];
+        let aGroupedDocumentData = this.fetchGroupedDocumentElementsByDocumentName(sSelectedDoc);
+        let oFile = this.fetchSampleFile();
+
+        let csvData = this.createSingleCSVData(aGroupedDocumentData);
+
+        return{
+            ...state,
+            csvData,
+            groupedDocumentElements: aGroupedDocumentData,
+            extractedSampleFile: oFile
+        }
+
+    }
 
 }

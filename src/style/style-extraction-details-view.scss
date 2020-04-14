@@ -1,0 +1,36 @@
+.extractionDetailsContainer{
+    height: 100%;
+
+    .emptyExtractionDetailView {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+    }
+
+    .extractionButtonContainer{
+        height: 47px;
+        width: 100%;
+        padding: 15px 15px 0 15px;
+    }
+
+    .extractionDetailViewBodyContainer{
+        width: auto;
+        height: calc(100% - 30px - 47px);
+        background: #fcfcfc;
+        margin: 15px;
+        border: 1px solid #eaeaea;
+        overflow: auto;
+
+        .extractionListViewPanel{
+            height: 100%;
+            width: 25%;
+        }
+
+        .extractionPdfViewContainer{
+            height: 100%;
+            width: 75%;
+        }
+    }
+}

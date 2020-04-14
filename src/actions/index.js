@@ -4,6 +4,9 @@ export const HANDLE_CLASSIFICATION_CREATE_BUTTON_CLICKED = 'HANDLE_CLASSIFICATIO
 export const HANDLE_TABLE_CELL_DATA_CHANGED = 'HANDLE_TABLE_CELL_DATA_CHANGED';
 export const HANDLE_TABLE_SAVE_DISCARD_CLICKED = 'HANDLE_TABLE_SAVE_DISCARD_CLICKED';
 
+export const HANDLE_EXTRACTION_DROP_DOWN_ON_BLUR = 'HANDLE_EXTRACTION_DROP_DOWN_ON_BLUR';
+export const HANDLE_EXTRACTION_CREATE_BUTTON_CLICKED = 'HANDLE_EXTRACTION_CREATE_BUTTON_CLICKED';
+
 
 export const handleScreenChanged = (sScreenName) => ({
   type: HANDLE_SCREEN_CHANGED,
@@ -31,3 +34,13 @@ export const handleTableSaveDiscardClicked = (buttonType) => ({
   type: HANDLE_TABLE_SAVE_DISCARD_CLICKED,
   buttonType: buttonType
 });
+
+export const handleExtractionDropDownOnBlur=(dropdownButtonType, selectedItems)=>({
+  type: HANDLE_EXTRACTION_DROP_DOWN_ON_BLUR,
+  dropdownButtonType: dropdownButtonType,
+  selectedItems:selectedItems
+})
+
+export const handleExtractionCreateButtonCLicked=()=>({
+  type: HANDLE_EXTRACTION_CREATE_BUTTON_CLICKED
+})
