@@ -1,50 +1,40 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 import {DragDropContext} from 'react-beautiful-dnd';
 
 import DraggableListView from './DraggableListView'
 
-// fake data generator
-const getItems = (count, offset = 0) =>
-    Array.from({length: count}, (v, k) => k).map(k => ({
-        id: `item-${k + offset}`,
-        content: `item ${k + offset}`
-    }));
-
-
 class DraggableListGroupView extends Component {
-    state = {
-        items: getItems(10),
-        selected: getItems(5, 10)
-    };
 
     onDragEnd = result => {
         const {source, destination} = result;
-        console.log("inside onDragEnd:", source, destination)
+
         // dropped outside the list
         if (!destination) {
             return;
         }
-
-        if (source.droppableId === destination.droppableId) {
-            //update state for same list dnd
-        } else {
-            //update state for different lists
+        let oSource = {
+            groupId:source.droppableId,
+            index: source.index
         }
+        let oDest = {
+            groupId:destination.droppableId,
+            index: destination.index
+        }
+
+        this.props.onDragEnd(oSource, oDest);
     };
 
     getGroupedLists() {
-        let aLists = [this.state.items, this.state.selected];
-
-        let count = 1
+        let aLists = this.props.lists;
         let aDOMs = [];
         for (let listData of aLists) {
-
             aDOMs.push(
                 <DraggableListView
-                    key={"droppable" + count++}
-                    droppableId={"droppable" + count++}
-                    label={"listData.label"}
-                    items={listData}
+                    key={listData.id}
+                    droppableId={listData.id}
+                    label={listData.label}
+                    items={listData.items}
                 />
             )
         }
@@ -59,6 +49,24 @@ class DraggableListGroupView extends Component {
             </DragDropContext>
         );
     }
+}
+
+DraggableListGroupView.propTypes={
+    lists:PropTypes.arrayOf(PropTypes.shape({
+        id:PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+        ]),
+        label:PropTypes.string,
+        items:PropTypes.arrayOf(PropTypes.shape({
+            id:PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number,
+            ]),
+            label:PropTypes.string,
+        }))
+    })).isRequired,
+    onDragEnd: PropTypes.func
 }
 
 export default DraggableListGroupView

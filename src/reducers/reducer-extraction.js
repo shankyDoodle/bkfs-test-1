@@ -36,14 +36,14 @@ export default {
         };
     },
 
-    createSingleCSVData: function(aGroupedDocumentData){
-        let aData = [];
-        for(let oData of aGroupedDocumentData){
-            for(let dataElement of oData.dataElements){
-                aData.push([dataElement])
+    createSingleTextData: function (aGroupedDocumentData) {
+        let sData = "";
+        for (let oData of aGroupedDocumentData) {
+            for (let dataElement of oData.dataElements) {
+                sData+=dataElement+"\n";
             }
         }
-        return aData;
+        return sData;
     },
 
     handleExtractionCreateButtonCLicked: function (state) {
@@ -51,15 +51,44 @@ export default {
         let aGroupedDocumentData = this.fetchGroupedDocumentElementsByDocumentName(sSelectedDoc);
         let oFile = this.fetchSampleFile();
 
-        let csvData = this.createSingleCSVData(aGroupedDocumentData);
+        let textData = this.createSingleTextData(aGroupedDocumentData);
 
-        return{
+        return {
             ...state,
-            csvData,
+            textData,
             groupedDocumentElements: aGroupedDocumentData,
             extractedSampleFile: oFile
         }
 
-    }
+    },
 
+    moveWithinSameList: (list, startIndex, endIndex) => {
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+
+        return result;
+    },
+
+    handleExtractionListDragEnd: function (state, source, destination) {
+        let aGroups = Array.from(state.groupedDocumentElements);
+
+        let sSourceGroupId = source.groupId
+        let oFoundSourceGroup = aGroups.find(oG => oG.groupId === sSourceGroupId)
+        let sDestGroupId = destination.groupId
+        if (sSourceGroupId === sDestGroupId) {
+            oFoundSourceGroup.dataElements = this.moveWithinSameList(oFoundSourceGroup.dataElements, source.index, destination.index);
+        }else{
+            let oFoundDestGroup = aGroups.find(oG => oG.groupId === sDestGroupId)
+            let [removed] = oFoundSourceGroup.dataElements.splice(source.index, 1);
+            oFoundDestGroup.dataElements.splice(destination.index, 0, removed);
+        }
+
+        let textData = this.createSingleTextData(aGroups);
+        return {
+            ...state,
+            textData,
+            groupedDocumentElements: aGroups
+        }
+    }
 }

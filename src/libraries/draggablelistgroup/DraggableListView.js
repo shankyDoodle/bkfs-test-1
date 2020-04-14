@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
 import {Draggable, Droppable} from "react-beautiful-dnd";
+import { Tooltip } from 'antd';
 
 const getListStyle = isDraggingOver => ({
     background: isDraggingOver ? 'lightblue' : '#fff',
@@ -36,7 +37,9 @@ class DraggableListView extends React.Component {
                         )}
                         className={"draggableListNode"}
                     >
-                        {item.content}
+                        <Tooltip title={item.label} mouseEnterDelay={0.5}>
+                            {item.label}
+                        </Tooltip>
                     </div>
                 )}
             </Draggable>
@@ -64,6 +67,21 @@ class DraggableListView extends React.Component {
             </Droppable>
         )
     }
+}
+
+DraggableListView.propTypes={
+    droppableId:PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ]),
+    label:PropTypes.string,
+    items:PropTypes.arrayOf(PropTypes.shape({
+        id:PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+        ]),
+        label:PropTypes.string,
+    }))
 }
 
 function mapStateToProps(state) {

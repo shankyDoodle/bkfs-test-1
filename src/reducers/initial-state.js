@@ -9,7 +9,8 @@ let initialState = {
     csvData:[],
     isScreenDirty: false,
     groupedDocumentElements:[],
-    extractedSampleFile:null
+    extractedSampleFile:null,
+    textData:""
 }
 
 export const defaultState = initialState;

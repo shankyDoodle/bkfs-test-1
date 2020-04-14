@@ -7,15 +7,19 @@ import {CSVLink} from "react-csv";
 import {Button, Empty} from 'antd';
 
 import DraggableListGroupView from "../libraries/draggablelistgroup/DraggableListGroupView";
-
+import TextExportButtonView from "../libraries/textexport/TextExportButtonView";
 
 class ExtractionDetailsView extends React.Component {
+
+    handleExtractionListDragEnd=(source, destination)=>{
+        this.props.dispatch(myActions.handleExtractionListDragEnd(source, destination));
+    }
 
     getExtractionButtonsView(){
         let aButtons = [];
         let oExportView = (
-            <div className={"exportButton buttonClass"}>
-                <Button><CSVLink data={this.props.csvData}>Export</CSVLink></Button>
+            <div className={"exportSingleButton buttonClass"}>
+                <TextExportButtonView data={this.props.textData} />
             </div>
         );
         aButtons.push(oExportView);
@@ -24,7 +28,21 @@ class ExtractionDetailsView extends React.Component {
     }
 
     getExtractionListViewPanel(){
-        return <DraggableListGroupView />
+        let aGroupedData = this.props.groupedDocumentElements;
+        let aLists = []
+        for(let i=0; i<aGroupedData.length; i++){
+            let oGroup = aGroupedData[i];
+            let oList = {};
+            oList.id = oGroup.groupId;
+            oList.label = "Group "+ oGroup.groupId;
+            oList.items = oGroup.dataElements.map(el=>{ return {id:el, label:el}})
+            aLists.push(oList)
+        }
+
+        return <DraggableListGroupView
+            lists={aLists}
+            onDragEnd={this.handleExtractionListDragEnd}
+        />
     }
 
     getPDFView(){

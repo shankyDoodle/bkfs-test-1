@@ -53,6 +53,9 @@ export default (state = getInitialState(), action) => {
         case appActions.HANDLE_EXTRACTION_CREATE_BUTTON_CLICKED:
             return extraction.handleExtractionCreateButtonCLicked(state);
 
+        case appActions.HANDLE_EXTRACTION_LIST_DRAG_END:
+            return extraction.handleExtractionListDragEnd(state, action.source, action.destination);
+
         default:
             return state
     }
