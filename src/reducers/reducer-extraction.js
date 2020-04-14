@@ -32,7 +32,7 @@ export default {
     handleExtractionDropDownOnBlur: function (state, dropdownType, selectedItems) {
         return {
             ...state,
-            selectedDocuments: selectedItems
+            selectedDocuments: [selectedItems]
         };
     },
 

@@ -17,6 +17,7 @@ import './style/style-tab.scss'
 
 import './libraries/editabletable/style-editable-table.scss'
 import './libraries/PDFView/style-pdf-viewer.scss'
+import './libraries/draggablelistgroup/style-draggable-list-group-view.scss'
 
 import App from './components/App'
 

@@ -6,6 +6,8 @@ import * as myActions from '../actions/index';
 import {CSVLink} from "react-csv";
 import {Button, Empty} from 'antd';
 
+import DraggableListGroupView from "../libraries/draggablelistgroup/DraggableListGroupView";
+
 
 class ExtractionDetailsView extends React.Component {
 
@@ -22,16 +24,16 @@ class ExtractionDetailsView extends React.Component {
     }
 
     getExtractionListViewPanel(){
-        return <Empty />
+        return <DraggableListGroupView />
     }
 
     getPDFView(){
-
+        return <div className={"emptyExtractionDetailView"}><Empty /></div>
     }
 
     render() {
         let oView;
-        if(!false){
+        if(!this.props.selectedDocuments || !this.props.selectedDocuments.length){
             oView = <div className={"emptyExtractionDetailView"}><Empty /></div>
         }else{
             oView = [

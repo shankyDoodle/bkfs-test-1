@@ -1,0 +1,22 @@
+.draggableListGroup{
+    margin: 15px;
+    overflow: auto;
+    border: 1px solid #eaeaea;
+    padding: 5px;
+
+    .groupListLabel {
+        font-size: 11px;
+        font-weight: 800;
+        opacity: .7;
+        height: 20px;
+        line-height: 15px;
+    }
+
+    .draggableListNode{
+        height: 40px;
+        line-height: 40px;
+        width: 100%;
+        padding-left: 15px;
+        border-top: 1px solid #f0f0f0;
+    }
+}
