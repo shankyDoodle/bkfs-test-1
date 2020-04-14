@@ -9,7 +9,7 @@ const getListStyle = isDraggingOver => ({
 });
 
 const getItemStyle = (isDragging, draggableStyle) => ({
-    background: isDragging ? 'lightgreen' : '#fff',
+    background: isDragging ? '#f0f0f0' : '#fff',
     // styles we need to apply on draggables
     ...draggableStyle
 });

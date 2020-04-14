@@ -21,6 +21,7 @@ class ExtractionSelectionView extends React.Component {
     }
 
     handleExtractionDropDownOnBlur=(dropdownButtonType, selectedItems)=>{
+        if(!selectedItems.length) return;
         this.props.dispatch(myActions.handleExtractionDropDownOnBlur(dropdownButtonType, selectedItems));
     }
 

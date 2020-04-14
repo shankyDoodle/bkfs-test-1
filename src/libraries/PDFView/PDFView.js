@@ -15,15 +15,23 @@ class PDFView extends Component {
         this.setState({numPages});
     };
 
-    goToPrevPage = () =>
+    goToPrevPage = () =>{
         this.setState(state => ({pageNumber: state.pageNumber - 1}));
+    }
+
     goToNextPage = () =>
         this.setState(state => ({pageNumber: state.pageNumber + 1}));
 
     showNoDataDiv=()=>{
         this.navRef.current.classList.add("noDisplay");
-        return <Empty/>
+        return <div className={"emptyPdf"}><Empty/></div>
     }
+
+    showErrorDiv=()=>{
+        this.navRef.current.classList.add("noDisplay");
+        return <div className={"emptyPdf"}><Empty/></div>
+    }
+
     render() {
         const {pageNumber, numPages} = this.state;
 
@@ -34,7 +42,7 @@ class PDFView extends Component {
                         file={this.props.document}
                         onLoadSuccess={this.onDocumentLoadSuccess}
                         noData={this.showNoDataDiv}
-                        error={this.showNoDataDiv}
+                        error={this.showErrorDiv}
                     >
                         <Page pageNumber={pageNumber} width={600}/>
                     </Document>

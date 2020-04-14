@@ -16,7 +16,7 @@ export default {
 
     fetchSampleFile: function (docName) {
         //TODO: ideally fetch files from server
-        return documentTypes[docName];
+        return "./pdfs/"+ documentTypes[docName];
     },
 
     fetchGroupedDocumentElementsByDocumentName: function (docName) {
@@ -49,7 +49,7 @@ export default {
     handleExtractionCreateButtonCLicked: function (state) {
         let sSelectedDoc = state.selectedDocuments[0];
         let aGroupedDocumentData = this.fetchGroupedDocumentElementsByDocumentName(sSelectedDoc);
-        let oFile = this.fetchSampleFile();
+        let oFile = this.fetchSampleFile(sSelectedDoc);
 
         let textData = this.createSingleTextData(aGroupedDocumentData);
 

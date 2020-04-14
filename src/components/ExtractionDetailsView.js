@@ -3,11 +3,11 @@ import {connect} from "react-redux";
 import { bindActionCreators } from 'redux'
 
 import * as myActions from '../actions/index';
-import {CSVLink} from "react-csv";
 import {Button, Empty} from 'antd';
 
 import DraggableListGroupView from "../libraries/draggablelistgroup/DraggableListGroupView";
 import TextExportButtonView from "../libraries/textexport/TextExportButtonView";
+import PDFView from "../libraries/PDFView/PDFView";
 
 class ExtractionDetailsView extends React.Component {
 
@@ -17,12 +17,12 @@ class ExtractionDetailsView extends React.Component {
 
     getExtractionButtonsView(){
         let aButtons = [];
-        let oExportView = (
+        let oExportTextView = (
             <div className={"exportSingleButton buttonClass"}>
                 <TextExportButtonView data={this.props.textData} />
             </div>
         );
-        aButtons.push(oExportView);
+        aButtons.push(oExportTextView);
 
         return aButtons;
     }
@@ -35,7 +35,7 @@ class ExtractionDetailsView extends React.Component {
             let oList = {};
             oList.id = oGroup.groupId;
             oList.label = "Group "+ oGroup.groupId;
-            oList.items = oGroup.dataElements.map(el=>{ return {id:el, label:el}})
+            oList.items = oGroup.dataElements.map(el=>{ return {id:el+Math.random(), label:el}})
             aLists.push(oList)
         }
 
@@ -46,12 +46,12 @@ class ExtractionDetailsView extends React.Component {
     }
 
     getPDFView(){
-        return <div className={"emptyExtractionDetailView"}><Empty /></div>
+        return <PDFView document={this.props.extractedSampleFile}/>
     }
 
     render() {
         let oView;
-        if(!this.props.selectedDocuments || !this.props.selectedDocuments.length){
+        if(!this.props.groupedDocumentElements || !this.props.groupedDocumentElements.length){
             oView = <div className={"emptyExtractionDetailView"}><Empty /></div>
         }else{
             oView = [
