@@ -10,25 +10,17 @@ import * as appConstants from '../constants/appConstants';
 import {Utils} from '../utils/utils';
 
 export default {
-    fetchCustomerList: function () {
-        //implement server call here fro customer list
-        return customerList;
-    },
-
     fetchCustomerData: function () {
         //implement server call here fro customer data
         return customerData;
     },
 
-    fetchDocumentTypes: function () {
-        //implement server call here fro customer data
-        return documentTypes;
-    },
-
-    switchToClassificationScreen: function(oRet){
-        let customerList = this.fetchCustomerList();
-        let documentTypes = this.fetchDocumentTypes();
-        Object.assign(oRet, {customerList, documentTypes});
+    switchToClassificationScreen: function(state, customerList, documentTypes){
+        return {
+            ...state,
+            customerList,
+            documentTypes
+        }
     },
 
     handleClassificationDropDownOnBlur: function (state, dropdownType, selectedItems) {

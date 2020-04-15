@@ -17,7 +17,7 @@ function handleScreenChanged(state, sScreenName) {
 
     switch(sScreenName){
         case screenNames.CLASSIFICATION:
-            classification.switchToClassificationScreen(oRet);
+            // classification.switchToClassificationScreen(oRet);
             break;
         case screenNames.EXTRACTION:
             extraction.switchToExtractionScreen(oRet)
@@ -55,6 +55,9 @@ export default (state = getInitialState(), action) => {
 
         case appActions.HANDLE_EXTRACTION_LIST_DRAG_END:
             return extraction.handleExtractionListDragEnd(state, action.source, action.destination);
+
+        case appActions.SET_CLASSIFICATION_SCREEN_ON_LOAD_DATA:
+            return classification.switchToClassificationScreen(state, action.customerList, action.documentTypes);
 
         default:
             return state

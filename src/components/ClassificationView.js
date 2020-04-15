@@ -11,6 +11,10 @@ import EditableTable from "../libraries/editabletable/EditableTableView";
 
 class ClassificationView extends React.Component {
 
+    componentDidMount() {
+        this.props.dispatch(myActions.fetchClassificationScreenData());
+    }
+
     handleTableCellDataChanged=(customerName, docName, newVal)=>{
         this.props.dispatch(myActions.handleTableCellDataChanged(customerName, docName, newVal));
     }
