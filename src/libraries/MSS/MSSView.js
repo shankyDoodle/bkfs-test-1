@@ -30,7 +30,7 @@ class MSSView extends React.Component {
         }
 
         for (let item of this.props.childElements) {
-            children.push(<Option key={item.label}>{item.label}</Option>);
+            children.push(<Option key={item.id}>{item.label}</Option>);
         }
         return children;
     }

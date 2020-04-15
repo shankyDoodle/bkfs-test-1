@@ -10,7 +10,8 @@ let initialState = {
     isScreenDirty: false,
     groupedDocumentElements:[],
     extractedSampleFile:null,
-    textData:""
+    textData:"",
+    selectedDocumentSamples:{}
 }
 
 export const defaultState = initialState;

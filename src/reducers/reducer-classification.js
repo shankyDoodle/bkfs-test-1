@@ -15,7 +15,7 @@ export default {
         return customerData;
     },
 
-    switchToClassificationScreen: function(state, customerList, documentTypes){
+    setClassificationScreenOnLoadData: function(state, customerList, documentTypes){
         return {
             ...state,
             customerList,
@@ -62,33 +62,38 @@ export default {
       return documentTypes;
     },
 
-    handleClassificationCreateButtonCLicked: function (state) {
-        let customerData = this.fetchCustomerData();
-        let oSampleFiles = this.fetchSampleFiles();
-
+    handleClassificationCreateButtonCLicked: function (state, customerData, documentSamples) {
         let selectedDocuments = state.selectedDocuments;
         let selectedCustomers = state.selectedCustomers;
 
-        let sFilePrefix = "./pdfs/";
+        let oCustomerList = state.customerList;
+        let oDocumentTypes = state.documentTypes;
 
         let aHeaderData = [];
         aHeaderData.push({label: "Document Types"});
         for (let customer of selectedCustomers) {
-            aHeaderData.push({label: customer});
+            let label = oCustomerList[customer].label;
+            aHeaderData.push({
+                id: customer,
+                label:label
+            });
         }
 
         let aBodyData = [];
         for (let doc of selectedDocuments) {
+            let sDocLabel = oDocumentTypes[doc].label;
             let values = {}
-            values["Document Types"] = doc
+            values["Document Types"] = sDocLabel;
 
             for (let customer of selectedCustomers) {
-                values[customer] = customerData[customer][doc]
+                values[customer] = customerData[customer][sDocLabel]
             }
             let temp = {};
-            temp["documentName"] = doc;
+            temp["documentId"] = doc;
+            temp["documentName"] = sDocLabel;
             temp["rowData"] = values
-            temp["file"] = sFilePrefix + oSampleFiles[doc];
+            temp["file"] = documentSamples[doc].data; //buffer data;
+            temp["unusedFileData"] = documentSamples[doc];//backup
             aBodyData.push(temp);
         }
 
@@ -109,20 +114,20 @@ export default {
     },
 
 
-    handleTableCellDataChanged: function (state, customerName, docName, newVal) {
+    handleTableCellDataChanged: function (state, customerId, docId, newVal) {
 
-        //update database
+        //update local database
         let customerDataCloned = Utils.getDirtyData(state.customerData);
-        customerDataCloned[customerName][docName] = newVal;
+        customerDataCloned[customerId][docId] = newVal;
 
         //update table data
         let tableDataCloned = Utils.getDirtyData(state.classificationTableData);
         let bodyData = tableDataCloned.bodyData
         let editedRowIndex = _.findIndex(bodyData, function (o) {
-            return o.documentName === docName;
+            return o.documentId === docId;
         });
         let editedRowData = bodyData[editedRowIndex].rowData;
-        editedRowData[customerName] = newVal;
+        editedRowData[customerId] = newVal;
 
         let aCSVData = this.createCSVData(tableDataCloned);
 

@@ -16,9 +16,6 @@ function handleScreenChanged(state, sScreenName) {
     let oRet = {...state}
 
     switch(sScreenName){
-        case screenNames.CLASSIFICATION:
-            // classification.switchToClassificationScreen(oRet);
-            break;
         case screenNames.EXTRACTION:
             extraction.switchToExtractionScreen(oRet)
             break;
@@ -39,7 +36,7 @@ export default (state = getInitialState(), action) => {
             return classification.handleClassificationDropDownOnBlur(state, action.dropdownButtonType, action.selectedItems);
 
         case appActions.HANDLE_CLASSIFICATION_CREATE_BUTTON_CLICKED:
-            return classification.handleClassificationCreateButtonCLicked(state);
+            return classification.handleClassificationCreateButtonCLicked(state, action.customerData, action.documentSamples);
 
         case appActions.HANDLE_TABLE_CELL_DATA_CHANGED:
             return classification.handleTableCellDataChanged(state, action.customerName, action.docName, action.newVal);
@@ -57,7 +54,7 @@ export default (state = getInitialState(), action) => {
             return extraction.handleExtractionListDragEnd(state, action.source, action.destination);
 
         case appActions.SET_CLASSIFICATION_SCREEN_ON_LOAD_DATA:
-            return classification.switchToClassificationScreen(state, action.customerList, action.documentTypes);
+            return classification.setClassificationScreenOnLoadData(state, action.customerList, action.documentTypes);
 
         default:
             return state

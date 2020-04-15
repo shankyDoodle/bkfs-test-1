@@ -12,11 +12,10 @@ import {dropdownTypes} from "../constants/appConstants";
 class ClassificationSelectionView extends React.Component {
 
     createDropDownListModel(data) {
-        let i = 0;
         let list = []
         for (let key in data) {
-            list.push({id: i, label: key})
-            i++;
+            let oData = data[key];
+            list.push({id: oData.id, label: oData.label})
         }
         return list;
     }
@@ -26,7 +25,9 @@ class ClassificationSelectionView extends React.Component {
     }
 
     handleCreateButtonClicked=()=>{
-        this.props.dispatch(myActions.handleClassificationCreateButtonCLicked());
+        let selectedCustomerIds = this.props.selectedCustomers
+        let selectedDocumentTypeIds = this.props.selectedDocuments;
+        this.props.dispatch(myActions.handleClassificationCreateButtonCLickedServerCall(selectedCustomerIds, selectedDocumentTypeIds));
     }
 
     getCustomerDropdownView(){

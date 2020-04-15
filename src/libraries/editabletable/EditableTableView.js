@@ -46,12 +46,14 @@ class EditableTable extends React.Component {
         for(let doc of aTableData){
             let aTds = [];
             let docName = doc.documentName;
+            let docId = doc.documentId;
             let docFile = doc.file;
             let oTableData = doc.rowData;
 
             for(let i=0;i<aColumnsToRender.length;i++){
                 let customerName = aColumnsToRender[i].label
-                let val = oTableData[customerName];
+                let customerId = aColumnsToRender[i].id;
+                let val = oTableData[customerId];
 
                 let oView = null;
                 if(i===0){
@@ -62,8 +64,8 @@ class EditableTable extends React.Component {
                     )
                 }else{
                     oView = (
-                        <input  key={customerName+"%$$%"+docName} value={val}
-                               onChange={this.handleTextChanged.bind(this, customerName, docName)}/>);
+                        <input  key={customerId+"%$$%"+docId} value={val}
+                               onChange={this.handleTextChanged.bind(this, customerId, docId)}/>);
                 }
 
                 aTds.push(<td>
