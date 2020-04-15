@@ -5,7 +5,7 @@ import * as appActions from '../actions'
 
 import classification from "./reducer-classification";
 import extraction from "./reducer-extraction";
-import {HANDLE_EXTRACTION_DROP_DOWN_ON_BLUR} from "../actions";
+import {HANDLE_EXTRACTION_DROP_DOWN_ON_BLUR, SET_EXTRACTION_SCREEN_ON_LOAD_DATA} from "../actions";
 
 
 
@@ -16,9 +16,6 @@ function handleScreenChanged(state, sScreenName) {
     let oRet = {...state}
 
     switch(sScreenName){
-        case screenNames.EXTRACTION:
-            extraction.switchToExtractionScreen(oRet)
-            break;
         case screenNames.HOME:
         default:
             resetToInitialState(oRet)
@@ -55,6 +52,9 @@ export default (state = getInitialState(), action) => {
 
         case appActions.SET_CLASSIFICATION_SCREEN_ON_LOAD_DATA:
             return classification.setClassificationScreenOnLoadData(state, action.customerList, action.documentTypes);
+
+        case appActions.SET_EXTRACTION_SCREEN_ON_LOAD_DATA:
+            return extraction.setExtractionScreenOnLoadData(state, action.documentTypes);
 
         default:
             return state

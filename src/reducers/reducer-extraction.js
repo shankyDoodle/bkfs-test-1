@@ -9,11 +9,6 @@ import * as appConstants from '../constants/appConstants';
 import {Utils} from '../utils/utils';
 
 export default {
-    fetchDocumentTypes: function () {
-        //implement server call here fro customer data
-        return documentTypes;
-    },
-
     fetchSampleFile: function (docName) {
         //TODO: ideally fetch files from server
         return "./pdfs/"+ documentTypes[docName];
@@ -24,9 +19,11 @@ export default {
         return groupedDocElements
     },
 
-    switchToExtractionScreen: function (oRet) {
-        let documentTypes = this.fetchDocumentTypes();
-        Object.assign(oRet, {documentTypes});
+    setExtractionScreenOnLoadData: function (state, documentTypes) {
+        return {
+            ...state,
+            documentTypes
+        }
     },
 
     handleExtractionDropDownOnBlur: function (state, dropdownType, selectedItems) {

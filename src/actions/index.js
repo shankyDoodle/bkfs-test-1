@@ -13,6 +13,7 @@ export const HANDLE_EXTRACTION_CREATE_BUTTON_CLICKED = 'HANDLE_EXTRACTION_CREATE
 export const HANDLE_EXTRACTION_LIST_DRAG_END = 'HANDLE_EXTRACTION_LIST_DRAG_END';
 
 export const SET_CLASSIFICATION_SCREEN_ON_LOAD_DATA = 'SET_CLASSIFICATION_SCREEN_ON_LOAD_DATA';
+export const SET_EXTRACTION_SCREEN_ON_LOAD_DATA = 'SET_EXTRACTION_SCREEN_ON_LOAD_DATA';
 
 
 export const handleScreenChanged = (sScreenName) => ({
@@ -101,6 +102,20 @@ export function handleTableSaveServerData(dirtyCustomerData) {
     return axios.post(URLMappings.SaveTableData, {dirtyCustomerData: dirtyCustomerData})
         .then((res) => {
           console.log("save succesful")
+        }).catch(e => dispatch(handleServerFailure(e)));
+  };
+}
+
+const setExtractionScreenOnLoadData=(documentTypes)=>({
+  type: SET_EXTRACTION_SCREEN_ON_LOAD_DATA,
+  documentTypes:documentTypes
+})
+
+export function fetchExtractionScreenData() {
+  return dispatch => {
+    return axios.get(URLMappings.GetDocumentTypes)
+        .then((res) => {
+          dispatch(setExtractionScreenOnLoadData(res.data));
         }).catch(e => dispatch(handleServerFailure(e)));
   };
 }

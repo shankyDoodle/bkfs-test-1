@@ -1,8 +1,6 @@
 import _ from 'lodash'
 
 import {
-    customerList,
-    customerData,
     documentTypes
 } from "../mockdata/mockData";
 
@@ -10,11 +8,6 @@ import * as appConstants from '../constants/appConstants';
 import {Utils} from '../utils/utils';
 
 export default {
-    fetchCustomerData: function () {
-        //implement server call here fro customer data
-        return customerData;
-    },
-
     setClassificationScreenOnLoadData: function(state, customerList, documentTypes){
         return {
             ...state,
@@ -58,7 +51,7 @@ export default {
 
     fetchSampleFiles: function(){
       //TODO: ideally fetch files from server
-      return documentTypes;
+      // return documentTypes;
     },
 
     handleClassificationCreateButtonCLicked: function (state, customerData, documentSamples) {

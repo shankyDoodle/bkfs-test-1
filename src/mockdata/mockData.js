@@ -50,13 +50,13 @@ export let customerData = {
 }
 
 export let documentTypes={
-    "Appraisal Report": "samples/Appraisal Report.pdf",
-    "Automated Underwriting Feedback - DU Codified Findings": "samples/Automated Underwriting Feedback - DU Codified Findings.pdf",
-    "Closing Disclosure": "samples/Closing Disclosure.pdf",
-    "Credit Report": "samples/Credit Report.pdf",
-    "Security Intrument Rider - ARM": "samples/Security Intrument Rider - ARM.pdf",
-    "Pay Stub": "",
-    "W2": ""
+    // "Appraisal Report": "samples/Appraisal Report.pdf",
+    // "Automated Underwriting Feedback - DU Codified Findings": "samples/Automated Underwriting Feedback - DU Codified Findings.pdf",
+    // "Closing Disclosure": "samples/Closing Disclosure.pdf",
+    // "Credit Report": "samples/Credit Report.pdf",
+    // "Security Intrument Rider - ARM": "samples/Security Intrument Rider - ARM.pdf",
+    // "Pay Stub": "",
+    // "W2": ""
 }
 
 

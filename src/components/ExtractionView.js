@@ -10,6 +10,10 @@ import ExtractionDetailsView from "./ExtractionDetailsView"
 
 class ExtractionView extends React.Component {
 
+    componentDidMount() {
+        this.props.dispatch(myActions.fetchExtractionScreenData());
+    }
+
     getTabBody() {
         return (
             <div className={"extractionScreen"}>
