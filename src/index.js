@@ -20,6 +20,7 @@ import './libraries/PDFView/style-pdf-viewer.scss'
 import './libraries/draggablelistgroup/style-draggable-list-group-view.scss'
 
 import App from './components/App'
+import configureStore from "./store/configureStore";
 
 
 import {getInitialState} from './reducers/initial-state';
@@ -30,7 +31,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 
 const state = getInitialState();
-const store = createStore(reducer, state, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = configureStore(state);
+// const store = createStore(reducer, state, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 render(
     <Provider store={store}>
