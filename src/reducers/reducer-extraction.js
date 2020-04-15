@@ -43,10 +43,9 @@ export default {
         return sData;
     },
 
-    handleExtractionCreateButtonCLicked: function (state) {
-        let sSelectedDoc = state.selectedDocuments[0];
-        let aGroupedDocumentData = this.fetchGroupedDocumentElementsByDocumentName(sSelectedDoc);
-        let oFile = this.fetchSampleFile(sSelectedDoc);
+    handleExtractionCreateButtonCLicked: function (state, groupedElements, sampleFile) {
+        let aGroupedDocumentData = groupedElements;
+        let oFile = sampleFile;
 
         let textData = this.createSingleTextData(aGroupedDocumentData);
 
@@ -56,7 +55,6 @@ export default {
             groupedDocumentElements: aGroupedDocumentData,
             extractedSampleFile: oFile
         }
-
     },
 
     moveWithinSameList: (list, startIndex, endIndex) => {

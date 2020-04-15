@@ -25,7 +25,8 @@ class ExtractionSelectionView extends React.Component {
     }
 
     handleCreateButtonClicked=()=>{
-        this.props.dispatch(myActions.handleExtractionCreateButtonCLicked());
+        let documentId = this.props.selectedDocuments[0];
+        this.props.dispatch(myActions.handleExtractionCreateButtonClickedFetchData(documentId));
     }
 
     getDocumentDropdownView(){

@@ -45,7 +45,7 @@ export default (state = getInitialState(), action) => {
             return extraction.handleExtractionDropDownOnBlur(state, action.dropdownButtonType, action.selectedItems);
 
         case appActions.HANDLE_EXTRACTION_CREATE_BUTTON_CLICKED:
-            return extraction.handleExtractionCreateButtonCLicked(state);
+            return extraction.handleExtractionCreateButtonCLicked(state, action.groupedElements, action.sampleFile);
 
         case appActions.HANDLE_EXTRACTION_LIST_DRAG_END:
             return extraction.handleExtractionListDragEnd(state, action.source, action.destination);

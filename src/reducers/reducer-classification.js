@@ -147,8 +147,6 @@ export default {
             delete state.classificationTableData.clonedObject;
             delete state.classificationTableData.isDirty;
             Object.assign(oRet, {customerData, classificationTableData});
-
-            //TODO: handle any server calls to update Database
         }else {
             let customerData = state.customerData;
             let classificationTableData = state.classificationTableData;
