@@ -43,13 +43,12 @@ export default {
         }
         aData.push(aHeaderDataRow);
 
-
         let aBodyData = oTableData.bodyData;
         _.forEach(aBodyData, function (oData) {
             let oRowData = oData.rowData;
             let row = [];
             for (let header of aHeaderData) {
-                row.push(oRowData[header.label]);
+                row.push(oRowData[header.id]);
             }
             aData.push(row);
         })
@@ -70,7 +69,7 @@ export default {
         let oDocumentTypes = state.documentTypes;
 
         let aHeaderData = [];
-        aHeaderData.push({label: "Document Types"});
+        aHeaderData.push({id:"document_types", label: "Document Types"});
         for (let customer of selectedCustomers) {
             let label = oCustomerList[customer].label;
             aHeaderData.push({
@@ -83,7 +82,7 @@ export default {
         for (let doc of selectedDocuments) {
             let sDocLabel = oDocumentTypes[doc].label;
             let values = {}
-            values["Document Types"] = sDocLabel;
+            values["document_types"] = sDocLabel;
 
             for (let customer of selectedCustomers) {
                 values[customer] = customerData[customer][sDocLabel]
@@ -109,7 +108,8 @@ export default {
             ...state,
             customerData,
             classificationTableData: oTableData,
-            csvData: aCSVData
+            csvData: aCSVData,
+            originalCSVData: aCSVData
         }
     },
 
@@ -143,6 +143,7 @@ export default {
     handleTableSaveDiscardClicked: function (state, buttonType) {
         let oRet = {...state}
 
+        Object.assign(oRet, {csvData:state.originalCSVData})
         Object.assign(oRet, {isScreenDirty:false})
         if(buttonType === "save"){
             let customerData = state.customerData.clonedObject;

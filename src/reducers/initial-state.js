@@ -9,6 +9,7 @@ let initialState = {
     customerData: {},
     classificationTableData: {},
     csvData:[],
+    originalCSVData:[],
     isScreenDirty: false,
     groupedDocumentElements:[],
     extractedSampleFile:null,
