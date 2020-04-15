@@ -17,10 +17,15 @@ class MSSView extends React.Component {
         // if(values.includes("selectAll")){
         //     this.handleBlur();
         // }
+        if (this.props.onChange) {
+            this.props.onChange(this.selected);
+        }
     }
 
     handleBlur=()=>{
-        this.props.onBlur(this.selected);
+        if(this.props.onBlur){
+            this.props.onBlur(this.selected);
+        }
     }
 
     getChildren(){
@@ -47,6 +52,7 @@ class MSSView extends React.Component {
                     defaultValue={this.props.selected || []}
                     onChange={this.handleChange}
                     onBlur={this.handleBlur}
+                    disabled={this.props.disabled}
                 >
                     {this.getChildren()}
                 </Select>
@@ -58,7 +64,8 @@ class MSSView extends React.Component {
 
 MSSView.propTypes={
     label:PropTypes.string,
-    onBlur: PropTypes.func.isRequired,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
     childElements: PropTypes.arrayOf(PropTypes.shape({
         id:PropTypes.oneOfType([
             PropTypes.string,
@@ -70,6 +77,7 @@ MSSView.propTypes={
     isMultiple: PropTypes.bool,
     allowClear: PropTypes.bool,
     selectAll: PropTypes.bool,
+    disabled: PropTypes.bool,
 }
 
 function mapStateToProps(state) {

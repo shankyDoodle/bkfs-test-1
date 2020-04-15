@@ -1,13 +1,13 @@
 import React from 'react';
+import _ from 'lodash'
 
-import TabView from "../libraries/TabView";
 import MSSView from "../libraries/MSS/MSSView";
 import {bindActionCreators} from "redux";
 import * as myActions from "../actions";
 import {connect} from "react-redux";
 import {Button, Divider} from 'antd';
 
-import {dropdownTypes} from "../constants/appConstants";
+import {dropdownTypes, screenNames} from "../constants/appConstants";
 
 class ClassificationSelectionView extends React.Component {
 
@@ -32,26 +32,38 @@ class ClassificationSelectionView extends React.Component {
 
     getCustomerDropdownView(){
         let aDropDownListModel = this.createDropDownListModel(this.props.customerList)
+        let isDisabled = this.props.customerData.hasOwnProperty("clonedObject")
         return <MSSView
             key={dropdownTypes.CUSTOMER_NAMES}
             label={"Customer Names"}
             childElements={aDropDownListModel}
-            onBlur={this.handleClassificationDropDownOnBlur.bind(this, dropdownTypes.CUSTOMER_NAMES)}
+            onChange={this.handleClassificationDropDownOnBlur.bind(this, dropdownTypes.CUSTOMER_NAMES)}
             isMultiple={true}
             allowClear={true}
+            disabled={isDisabled}
             selectAll={true}/>
     }
 
     getDocumentDropdownView(){
         let aDropDownListModel = this.createDropDownListModel(this.props.documentTypes)
+        let isDisabled = this.props.customerData.hasOwnProperty("clonedObject")
         return <MSSView
             key={dropdownTypes.DOCUMENT_TYPES}
             label={"Document Types"}
             childElements={aDropDownListModel}
-            onBlur={this.handleClassificationDropDownOnBlur.bind(this, dropdownTypes.DOCUMENT_TYPES)}
+            onChange={this.handleClassificationDropDownOnBlur.bind(this, dropdownTypes.DOCUMENT_TYPES)}
             isMultiple={true}
             allowClear={true}
+            disabled={isDisabled}
             selectAll={true}/>
+    }
+
+    getFooterButtonView(){
+        if(_.isEmpty(this.props.selectedDocuments) || this.props.customerData.hasOwnProperty("clonedObject")){
+            return <Button disabled onClick={this.handleCreateButtonClicked}>Create</Button>
+        }
+
+        return <Button onClick={this.handleCreateButtonClicked}>Create</Button>
     }
 
     render() {
@@ -68,7 +80,7 @@ class ClassificationSelectionView extends React.Component {
                     <Divider/>
                 </div>
                 <div className={"buttonFooter"}>
-                    <Button onClick={this.handleCreateButtonClicked}>Create</Button>
+                    {this.getFooterButtonView()}
                 </div>
             </div>
         );

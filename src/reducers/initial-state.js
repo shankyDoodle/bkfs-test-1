@@ -1,5 +1,7 @@
+import {screenNames} from "../constants/appConstants";
+
 let initialState = {
-    currentScreen: "HOME",
+    currentScreen: screenNames.HOME,
     customerList: {},
     selectedCustomers: [],
     documentTypes: {},
