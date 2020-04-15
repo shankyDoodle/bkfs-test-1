@@ -5,6 +5,7 @@ let URLMapping = function () {
     this.GetDocumentTypes = this.ServerURL+'documentTypes';
     this.GetSelectedCustomerData = this.ServerURL+'selectedCustomerData';
     this.GetSelectedDocumentSamples = this.ServerURL+'selectedDocumentSamples';
+    this.SaveTableData = this.ServerURL+'updateCustomerData';
 };
 
 export default new URLMapping();

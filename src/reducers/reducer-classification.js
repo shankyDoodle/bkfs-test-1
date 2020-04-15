@@ -115,10 +115,12 @@ export default {
 
 
     handleTableCellDataChanged: function (state, customerId, docId, newVal) {
+        let oDocumentTypes = state.documentTypes;
+        let docLabel = oDocumentTypes[docId].label;
 
         //update local database
         let customerDataCloned = Utils.getDirtyData(state.customerData);
-        customerDataCloned[customerId][docId] = newVal;
+        customerDataCloned[customerId][docLabel] = newVal;
 
         //update table data
         let tableDataCloned = Utils.getDirtyData(state.classificationTableData);

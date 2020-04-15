@@ -94,3 +94,13 @@ export function handleClassificationCreateButtonCLickedServerCall(selectedCustom
         })).catch(e => dispatch(handleServerFailure(e)));
   };
 }
+
+
+export function handleTableSaveServerData(dirtyCustomerData) {
+  return dispatch => {
+    return axios.post(URLMappings.SaveTableData, {dirtyCustomerData: dirtyCustomerData})
+        .then((res) => {
+          console.log("save succesful")
+        }).catch(e => dispatch(handleServerFailure(e)));
+  };
+}

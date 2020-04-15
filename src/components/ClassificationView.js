@@ -20,6 +20,10 @@ class ClassificationView extends React.Component {
     }
 
     handleTableSaveDiscardClicked=(buttonType)=>{
+        if(buttonType === "save"){
+            //handle save
+            this.props.dispatch(myActions.handleTableSaveServerData(this.props.customerData.clonedObject));
+        }
         this.props.dispatch(myActions.handleTableSaveDiscardClicked(buttonType));
     }
 
