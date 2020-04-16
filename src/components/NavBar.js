@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { message } from 'antd';
 
 import * as myActions from '../actions/index';
 import {screenNames} from "../constants/appConstants";
@@ -40,7 +41,11 @@ export class NavBar extends React.Component {
 
     handleHomeClicked = (oEvent) => {
         oEvent.stopPropagation();
-        this.props.dispatch(myActions.handleScreenChanged(screenNames.HOME));
+        if(this.props.isExtractionListDirty || this.props.isScreenDirty ){
+            message.info("There are unsaved changes. Please save or discard them before leaving screen!");
+        }else{
+            this.props.dispatch(myActions.handleScreenChanged(screenNames.HOME));
+        }
     };
 
     render() {
