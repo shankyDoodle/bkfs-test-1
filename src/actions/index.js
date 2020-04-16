@@ -14,6 +14,8 @@ export const HANDLE_EXTRACTION_LIST_DRAG_END = 'HANDLE_EXTRACTION_LIST_DRAG_END'
 
 export const SET_CLASSIFICATION_SCREEN_ON_LOAD_DATA = 'SET_CLASSIFICATION_SCREEN_ON_LOAD_DATA';
 export const SET_EXTRACTION_SCREEN_ON_LOAD_DATA = 'SET_EXTRACTION_SCREEN_ON_LOAD_DATA';
+export const HANDLE_EXTRACTION_SAVE_AFTER_EFFECTS = 'HANDLE_EXTRACTION_SAVE_AFTER_EFFECTS';
+export const HANDLE_EXTRACTION_DISCARD_CLICKED = 'HANDLE_EXTRACTION_DISCARD_CLICKED';
 
 
 export const handleScreenChanged = (sScreenName) => ({
@@ -122,6 +124,26 @@ export function handleExtractionCreateButtonClickedFetchData(documentId) {
     return axios.get(URLMappings.GetGroupedElementsByDocId, {params:{documentId:documentId}})
         .then(res => {
           dispatch(handleExtractionCreateButtonCLicked(res.data));
+        }).catch(e => dispatch(handleServerFailure(e)));
+  };
+}
+
+export const handleExtractionDiscardClicked=()=>({
+  type: HANDLE_EXTRACTION_DISCARD_CLICKED,
+})
+
+const handleExtractionSaveAfterEffects=()=>({
+  type: HANDLE_EXTRACTION_SAVE_AFTER_EFFECTS,
+})
+
+export function handleExtractionSaveClicked(groupedDocumentElements, selectedDocumentTypeId) {
+  return dispatch => {
+    return axios.post(URLMappings.SaveGroupedElementData,  {
+      selectedDocumentId:selectedDocumentTypeId,
+      groupedDocumentElements:groupedDocumentElements
+    })
+        .then(res => {
+          dispatch(handleExtractionSaveAfterEffects());
         }).catch(e => dispatch(handleServerFailure(e)));
   };
 }

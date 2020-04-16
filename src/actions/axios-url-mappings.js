@@ -8,6 +8,7 @@ let URLMapping = function () {
     this.GetGroupedElementsByDocId = this.ServerURL+'getGroupedDocumentElements';
     this.GetSampleDocumentByDocId = this.ServerURL+'getSampleDocument';
     this.GetAllGroupsCSVData = this.ServerURL+'getAllGroupsCSVData';
+    this.SaveGroupedElementData = this.ServerURL+'saveGroupedDocumentElements';
 };
 
 export default new URLMapping();

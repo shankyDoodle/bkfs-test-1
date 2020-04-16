@@ -10,7 +10,6 @@ import NavBar from './NavBar'
 import {bindActionCreators} from "redux";
 import * as myActions from "../actions";
 import {connect} from "react-redux";
-import {withStyles} from "@material-ui/core/styles";
 
 class App extends React.Component {
     constructor(props) {

@@ -31,6 +31,15 @@ class ExtractionDetailsView extends React.Component {
             }).catch(e => console.log());
     }
 
+    handleExtractionSaveClicked=(actionType)=>{
+        let docId = this.props.selectedDocuments[0];
+        this.props.dispatch(myActions.handleExtractionSaveClicked(this.props.groupedDocumentElements, docId, actionType));
+    }
+
+    handleExtractionDiscardClicked=()=>{
+        this.props.dispatch(myActions.handleExtractionDiscardClicked());
+    }
+
     csvDownloadDOM(){
         if(!this.state.exportAllClicked) return null;
 
@@ -52,6 +61,22 @@ class ExtractionDetailsView extends React.Component {
             </div>
         );
         aButtons.push(oExportAllCSVView);
+
+        if(this.props.isExtractionListDirty){
+            let oSaveButtonView = (
+                <div className={"saveButton buttonClass"}>
+                    <Button onClick={this.handleExtractionSaveClicked.bind(this, "save")}>Save</Button>
+                </div>
+            );
+            aButtons.push(oSaveButtonView);
+
+            let oDiscardButtonView = (
+                <div className={"saveButton buttonClass"}>
+                    <Button onClick={this.handleExtractionDiscardClicked}>Discard</Button>
+                </div>
+            );
+            aButtons.push(oDiscardButtonView);
+        }
 
         return aButtons;
     }

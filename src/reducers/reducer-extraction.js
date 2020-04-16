@@ -45,13 +45,12 @@ export default {
 
     handleExtractionCreateButtonCLicked: function (state, groupedElements) {
         let aGroupedDocumentData = groupedElements;
-
         let textData = this.createSingleTextData(aGroupedDocumentData);
-
         return {
             ...state,
             textData,
-            groupedDocumentElements: aGroupedDocumentData
+            groupedDocumentElements: aGroupedDocumentData,
+            originalGroupedDocumentElements: _.cloneDeep(aGroupedDocumentData)
         }
     },
 
@@ -81,7 +80,33 @@ export default {
         return {
             ...state,
             textData,
-            groupedDocumentElements: aGroups
+            groupedDocumentElements: aGroups,
+            isExtractionListDirty:true
+        }
+    },
+
+    handleExtractionSaveAfterEffects: function (state) {
+        let aGroups = _.cloneDeep(state.groupedDocumentElements);
+        let textData = this.createSingleTextData(aGroups);
+        return {
+            ...state,
+            textData,
+            groupedDocumentElements: aGroups,
+            originalGroupedDocumentElements:_.cloneDeep(aGroups),
+            isExtractionListDirty:false
+        }
+    },
+
+    handleExtractionDiscardClicked: function (state) {
+        let aGroups = _.cloneDeep(state.originalGroupedDocumentElements);
+        let textData = this.createSingleTextData(aGroups);
+        return {
+            ...state,
+            textData,
+            groupedDocumentElements: aGroups,
+            originalGroupedDocumentElements:_.cloneDeep(aGroups),
+            isExtractionListDirty:false
         }
     }
+
 }

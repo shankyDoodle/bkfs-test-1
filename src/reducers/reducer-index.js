@@ -5,7 +5,11 @@ import * as appActions from '../actions'
 
 import classification from "./reducer-classification";
 import extraction from "./reducer-extraction";
-import {HANDLE_EXTRACTION_DROP_DOWN_ON_BLUR, SET_EXTRACTION_SCREEN_ON_LOAD_DATA} from "../actions";
+import {
+    HANDLE_EXTRACTION_DROP_DOWN_ON_BLUR,
+    HANDLE_EXTRACTION_SAVE_AFTER_EFFECTS,
+    SET_EXTRACTION_SCREEN_ON_LOAD_DATA
+} from "../actions";
 
 
 
@@ -55,6 +59,12 @@ export default (state = getInitialState(), action) => {
 
         case appActions.SET_EXTRACTION_SCREEN_ON_LOAD_DATA:
             return extraction.setExtractionScreenOnLoadData(state, action.documentTypes);
+
+        case appActions.HANDLE_EXTRACTION_SAVE_AFTER_EFFECTS:
+            return extraction.handleExtractionSaveAfterEffects(state);
+
+        case appActions.HANDLE_EXTRACTION_DISCARD_CLICKED:
+            return extraction.handleExtractionDiscardClicked(state);
 
         default:
             return state
