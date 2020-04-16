@@ -35,10 +35,12 @@ class ExtractionSelectionView extends React.Component {
             key={dropdownTypes.DOCUMENT_TYPES}
             label={"Document Types"}
             childElements={aDropDownListModel}
+            disabled={this.props.isExtractionListDirty}
             onBlur={this.handleExtractionDropDownOnBlur.bind(this, dropdownTypes.DOCUMENT_TYPES)}/>
     }
 
     render() {
+        let bIsCreateButtonDisabled = this.props.isExtractionListDirty || ! this.props.selectedDocuments || !this.props.selectedDocuments.length;
         return (
             <div className={"extractionSelectionContainer"}>
                 <div className={"dropDownsContainer"}>
@@ -48,7 +50,8 @@ class ExtractionSelectionView extends React.Component {
                     <Divider/>
                 </div>
                 <div className={"buttonFooter"}>
-                    <Button onClick={this.handleCreateButtonClicked}>Create</Button>
+                    <Button onClick={this.handleCreateButtonClicked}
+                            disabled={bIsCreateButtonDisabled}>Create</Button>
                 </div>
             </div>
         );
