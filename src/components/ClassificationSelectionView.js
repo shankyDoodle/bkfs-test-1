@@ -34,6 +34,10 @@ class ClassificationSelectionView extends React.Component {
         this.props.dispatch(myActions.handleNewCustomerAdded(sCustomerName));
     }
 
+    handleNewDocumentTypeAdded=(sDocTypeName)=>{
+        this.props.dispatch(myActions.handleNewDocumentTypeAdded(sDocTypeName));
+    }
+
     getCustomerDropdownView(){
         let aDropDownListModel = this.createDropDownListModel(this.props.customerList)
         let isDisabled = this.props.customerData.hasOwnProperty("clonedObject")
@@ -61,6 +65,8 @@ class ClassificationSelectionView extends React.Component {
             isMultiple={true}
             allowClear={true}
             disabled={isDisabled}
+            selected={this.props.selectedDocuments}
+            onEnterPress={this.handleNewDocumentTypeAdded}
             selectAll={true}/>
     }
 

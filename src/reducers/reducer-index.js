@@ -69,6 +69,9 @@ export default (state = getInitialState(), action) => {
         case appActions.HANDLE_NEW_CUSTOMER_ADDED_AFTER_EFFECTS:
             return classification.handleNewCustomerAddedAfterEffects(state, action.newCustomerData);
 
+        case appActions.HANDLE_NEW_DOC_TYPE_ADDED_AFTER_EFFECTS:
+            return classification.handleNewDocTypeAddedAfterEffects(state, action.newCustomerData);
+
         default:
             return state
     }

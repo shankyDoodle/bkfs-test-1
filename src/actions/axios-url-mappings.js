@@ -10,6 +10,7 @@ let URLMapping = function () {
     this.GetAllGroupsCSVData = this.ServerURL+'getAllGroupsCSVData';
     this.SaveGroupedElementData = this.ServerURL+'saveGroupedDocumentElements';
     this.AddNewCustomer = this.ServerURL+'addNewCustomer';
+    this.AddNewDocumentType = this.ServerURL+'addNewDocumentType';
 };
 
 export default new URLMapping();

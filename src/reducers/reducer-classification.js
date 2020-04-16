@@ -134,7 +134,6 @@ export default {
     handleTableSaveDiscardClicked: function (state, buttonType) {
         let oRet = {...state}
 
-        Object.assign(oRet, {csvData:state.originalCSVData})
         Object.assign(oRet, {isScreenDirty:false})
         if(buttonType === "save"){
             let customerData = state.customerData.clonedObject;
@@ -145,10 +144,12 @@ export default {
             delete state.classificationTableData.clonedObject;
             delete state.classificationTableData.isDirty;
             Object.assign(oRet, {customerData, classificationTableData});
+            Object.assign(oRet, {originalCSVData:state.csvData})
         }else {
             let customerData = state.customerData;
             let classificationTableData = state.classificationTableData;
             Object.assign(oRet, {customerData, classificationTableData});
+            Object.assign(oRet, {csvData:state.originalCSVData})
         }
 
         delete state.customerData.clonedObject
@@ -169,6 +170,19 @@ export default {
             ...state,
             customerList:newCustomerList,
             selectedCustomers:newSelectedCustomers
+        }
+    },
+
+    handleNewDocTypeAddedAfterEffects: function (state, oNewDocTypeData) {
+        let newDocumentTypes = oNewDocTypeData.documentTypes;
+        let oNewDocument = oNewDocTypeData.newDocumentType;
+        let selectedList = state.selectedDocuments
+        let newSelectedDocs = selectedList.concat([oNewDocument.id]);
+
+        return {
+            ...state,
+            documentTypes:newDocumentTypes,
+            selectedDocuments:newSelectedDocs
         }
     }
 
