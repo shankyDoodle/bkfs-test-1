@@ -1,6 +1,7 @@
 import React from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
+import PropTypes from 'prop-types';
 
 import * as myActions from "../actions";
 
@@ -9,7 +10,7 @@ import MSSView from "../libraries/MSS/MSSView";
 import ClassificationSelectionView from "./ClassificationSelectionView"
 import EditableTable from "../libraries/editabletable/EditableTableView";
 
-class ClassificationView extends React.Component {
+export class ClassificationView extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(myActions.fetchClassificationScreenData());
@@ -64,6 +65,13 @@ class ClassificationView extends React.Component {
         );
     }
 }
+
+ClassificationView.propTypes={
+    classificationTableData:PropTypes.object,
+    customerData:PropTypes.object,
+    csvData:PropTypes.array
+}
+
 
 function mapStateToProps(state) {
     return state;

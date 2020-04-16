@@ -66,7 +66,7 @@ class EditableTable extends React.Component {
                 let oView = null;
                 if(i===0){
                     oView = (
-                        <Popover visible title={docName} content={this.getPDFViewerView(docId)}>
+                        <Popover title={docName} content={this.getPDFViewerView(docId)}>
                             <div key={i} className={"tableFixedColumn"}>{docName}</div>
                         </Popover>
                     )

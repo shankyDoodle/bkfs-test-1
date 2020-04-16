@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test ClassificationSelectionView component render 1`] = `
+<div
+  className="classificationSelectionContainer"
+>
+  <div
+    className="dropDownsContainer"
+  >
+    <div
+      className="customerDropdown"
+    >
+      <div
+        className="mssViewWrapper"
+      >
+        <div
+          className="mssLabel"
+        >
+          Customer Names
+        </div>
+        <div
+          className="ant-select ant-select-multiple ant-select-allow-clear ant-select-show-search"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            className="ant-select-selector"
+            onClick={[Function]}
+            onMouseDown={[Function]}
+          >
+            <span
+              className="ant-select-selection-search"
+              style={
+                Object {
+                  "width": 0,
+                }
+              }
+            >
+              <input
+                aria-activedescendant="undefined_list_0"
+                aria-autocomplete="list"
+                aria-controls="undefined_list"
+                aria-haspopup="listbox"
+                aria-owns="undefined_list"
+                autoComplete="off"
+                className="ant-select-selection-search-input"
+                disabled={false}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onMouseDown={[Function]}
+                readOnly={true}
+                role="combobox"
+                style={
+                  Object {
+                    "opacity": 0,
+                  }
+                }
+                value=""
+              />
+              <span
+                aria-hidden={true}
+                className="ant-select-selection-search-mirror"
+              >
+                
+                 
+              </span>
+            </span>
+            <span
+              className="ant-select-selection-placeholder"
+            >
+              Please select
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-divider ant-divider-horizontal"
+      role="separator"
+    />
+    <div
+      className="documentTypeDropdown"
+    >
+      <div
+        className="mssViewWrapper"
+      >
+        <div
+          className="mssLabel"
+        >
+          Document Types
+        </div>
+        <div
+          className="ant-select ant-select-multiple ant-select-allow-clear ant-select-show-search"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            className="ant-select-selector"
+            onClick={[Function]}
+            onMouseDown={[Function]}
+          >
+            <span
+              className="ant-select-selection-search"
+              style={
+                Object {
+                  "width": 0,
+                }
+              }
+            >
+              <input
+                aria-activedescendant="undefined_list_0"
+                aria-autocomplete="list"
+                aria-controls="undefined_list"
+                aria-haspopup="listbox"
+                aria-owns="undefined_list"
+                autoComplete="off"
+                className="ant-select-selection-search-input"
+                disabled={false}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                onMouseDown={[Function]}
+                readOnly={true}
+                role="combobox"
+                style={
+                  Object {
+                    "opacity": 0,
+                  }
+                }
+                value=""
+              />
+              <span
+                aria-hidden={true}
+                className="ant-select-selection-search-mirror"
+              >
+                
+                 
+              </span>
+            </span>
+            <span
+              className="ant-select-selection-placeholder"
+            >
+              Please select
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-divider ant-divider-horizontal"
+      role="separator"
+    />
+  </div>
+  <div
+    className="buttonFooter"
+  >
+    <button
+      className="ant-btn"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      <span>
+        Create
+      </span>
+    </button>
+  </div>
+</div>
+`;
