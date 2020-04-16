@@ -19,6 +19,10 @@ export class ExtractionDetailsView extends React.Component {
         exportAllData:null
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        this.state.exportAllClicked = false;
+    }
+
     handleExtractionListDragEnd=(source, destination)=>{
         this.props.dispatch(myActions.handleExtractionListDragEnd(source, destination));
     }
@@ -94,20 +98,24 @@ export class ExtractionDetailsView extends React.Component {
             aLists.push(oList)
         }
 
-        return <DraggableListGroupView
+        if(!aLists.length){
+            return <div key={this.props.extractionCreateClickedDocId} className={"emptyExtractionListPanel"}><Empty /></div>
+        }
+
+        return <DraggableListGroupView key={this.props.extractionCreateClickedDocId}
             lists={aLists}
             onDragEnd={this.handleExtractionListDragEnd}
         />
     }
 
     getPDFView(){
-        let docId = this.props.selectedDocuments[0]
+        let docId = this.props.extractionCreateClickedDocId
         return <PDFView key={docId} documentId={docId}/>
     }
 
     render() {
         let oView;
-        if(!this.props.groupedDocumentElements || !this.props.groupedDocumentElements.length){
+        if(!this.props.extractionCreateClickedDocId){
             oView = <div className={"emptyExtractionDetailView"}><Empty /></div>
         }else{
             oView = [

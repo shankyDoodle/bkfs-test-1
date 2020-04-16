@@ -15,7 +15,8 @@ let initialState = {
     originalGroupedDocumentElements:null,
     isExtractionListDirty:false,
     textData:"",
-    selectedDocumentSamples:{}
+    selectedDocumentSamples:{},
+    extractionCreateClickedDocId:null
 }
 
 export const defaultState = initialState;

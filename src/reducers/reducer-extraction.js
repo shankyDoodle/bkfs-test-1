@@ -28,11 +28,13 @@ export default {
     handleExtractionCreateButtonCLicked: function (state, groupedElements) {
         let aGroupedDocumentData = groupedElements;
         let textData = this.createSingleTextData(aGroupedDocumentData);
+        let extractionCreateClickedDocId = state.selectedDocuments[0];
         return {
             ...state,
             textData,
             groupedDocumentElements: aGroupedDocumentData,
-            originalGroupedDocumentElements: _.cloneDeep(aGroupedDocumentData)
+            originalGroupedDocumentElements: _.cloneDeep(aGroupedDocumentData),
+            extractionCreateClickedDocId:extractionCreateClickedDocId
         }
     },
 

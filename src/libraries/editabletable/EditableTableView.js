@@ -39,7 +39,7 @@ export class EditableTable extends React.Component {
         return (
             <div className={"gridPDFViewWrapper"}>
                 <PDFView documentId={docId}/>
-                <FileUploader handleFileUpload={this.handleFileUpload.bind(this, docId)}/>
+                {/*<FileUploader handleFileUpload={this.handleFileUpload.bind(this, docId)}/>*/}
             </div>
         )
 
