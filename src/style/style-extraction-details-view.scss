@@ -13,6 +13,24 @@
         height: 47px;
         width: 100%;
         padding: 15px 15px 0 15px;
+        text-align: right;
+
+        .buttonClass {
+            float: right;
+            margin: 0 5px;
+
+            &.exportSingleButton{
+                float: left;
+                margin-left: 0;
+            }
+            &.exportAllButton{
+                float: left;
+            }
+
+            &.saveButton{
+                margin-right: 0;
+            }
+        }
     }
 
     .extractionDetailViewBodyContainer{

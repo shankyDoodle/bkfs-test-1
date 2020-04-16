@@ -8,11 +8,33 @@ import {Button, Empty} from 'antd';
 import DraggableListGroupView from "../libraries/draggablelistgroup/DraggableListGroupView";
 import TextExportButtonView from "../libraries/textexport/TextExportButtonView";
 import PDFView from "../libraries/PDFView/PDFView";
+import {CSVDownload, CSVLink} from "react-csv";
+import axios from "axios";
+import URLMappings from "../actions/axios-url-mappings";
 
 class ExtractionDetailsView extends React.Component {
+    state ={
+        exportAllClicked: false,
+        exportAllData:null
+    }
 
     handleExtractionListDragEnd=(source, destination)=>{
         this.props.dispatch(myActions.handleExtractionListDragEnd(source, destination));
+    }
+
+    handleExportAllClicked = () => {
+        let _this = this;
+        axios.get(URLMappings.GetAllGroupsCSVData)
+            .then((res) => {
+                let data = res.data;
+                _this.setState({exportAllData: data, exportAllClicked: true})
+            }).catch(e => console.log());
+    }
+
+    csvDownloadDOM(){
+        if(!this.state.exportAllClicked) return null;
+
+        return <CSVDownload key={Math.random()} data={this.state.exportAllData} target="_blank" />
     }
 
     getExtractionButtonsView(){
@@ -23,6 +45,13 @@ class ExtractionDetailsView extends React.Component {
             </div>
         );
         aButtons.push(oExportTextView);
+
+        let oExportAllCSVView = (
+            <div className={"exportAllButton buttonClass"}>
+                <Button onClick={this.handleExportAllClicked}>Export All{this.csvDownloadDOM()}</Button>
+            </div>
+        );
+        aButtons.push(oExportAllCSVView);
 
         return aButtons;
     }
