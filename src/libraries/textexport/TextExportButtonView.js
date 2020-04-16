@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Button} from "antd";
 import {connect} from "react-redux";
 
-class TextExportButtonView extends React.Component {
+export class TextExportButtonView extends React.Component {
     downloadTxtFile = () => {
         const element = document.createElement("a");
         const file = new Blob([this.props.data], {type: 'text/plain'});

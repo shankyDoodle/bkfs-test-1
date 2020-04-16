@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 import * as myActions from "../actions";
 
-import TabView from "../libraries/TabView";
+import TabView from "../libraries/tabview/TabView";
 import ExtractionSelectionView from "./ExtractionSelectionView"
 import ExtractionDetailsView from "./ExtractionDetailsView"
 

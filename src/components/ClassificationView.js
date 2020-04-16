@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import * as myActions from "../actions";
 
-import TabView from "../libraries/TabView";
+import TabView from "../libraries/tabview/TabView";
 import MSSView from "../libraries/MSS/MSSView";
 import ClassificationSelectionView from "./ClassificationSelectionView"
 import EditableTable from "../libraries/editabletable/EditableTableView";

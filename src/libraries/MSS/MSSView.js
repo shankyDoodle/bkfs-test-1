@@ -5,7 +5,7 @@ import { Select } from 'antd';
 const { Option } = Select;
 
 
-class MSSView extends React.Component {
+export class MSSView extends React.Component {
 
     constructor(props) {
         super(props);
