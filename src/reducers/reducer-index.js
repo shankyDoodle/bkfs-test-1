@@ -7,7 +7,7 @@ import classification from "./reducer-classification";
 import extraction from "./reducer-extraction";
 import {
     HANDLE_EXTRACTION_DROP_DOWN_ON_BLUR,
-    HANDLE_EXTRACTION_SAVE_AFTER_EFFECTS,
+    HANDLE_EXTRACTION_SAVE_AFTER_EFFECTS, HANDLE_NEW_CUSTOMER_ADDED_AFTER_EFFECTS,
     SET_EXTRACTION_SCREEN_ON_LOAD_DATA
 } from "../actions";
 
@@ -65,6 +65,9 @@ export default (state = getInitialState(), action) => {
 
         case appActions.HANDLE_EXTRACTION_DISCARD_CLICKED:
             return extraction.handleExtractionDiscardClicked(state);
+
+        case appActions.HANDLE_NEW_CUSTOMER_ADDED_AFTER_EFFECTS:
+            return classification.handleNewCustomerAddedAfterEffects(state, action.newCustomerData);
 
         default:
             return state

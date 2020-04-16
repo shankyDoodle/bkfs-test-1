@@ -30,6 +30,10 @@ class ClassificationSelectionView extends React.Component {
         this.props.dispatch(myActions.handleClassificationCreateButtonCLickedServerCall(selectedCustomerIds, selectedDocumentTypeIds));
     }
 
+    handleNewCustomerAdded=(sCustomerName)=>{
+        this.props.dispatch(myActions.handleNewCustomerAdded(sCustomerName));
+    }
+
     getCustomerDropdownView(){
         let aDropDownListModel = this.createDropDownListModel(this.props.customerList)
         let isDisabled = this.props.customerData.hasOwnProperty("clonedObject")
@@ -41,6 +45,8 @@ class ClassificationSelectionView extends React.Component {
             isMultiple={true}
             allowClear={true}
             disabled={isDisabled}
+            selected={this.props.selectedCustomers}
+            onEnterPress={this.handleNewCustomerAdded}
             selectAll={true}/>
     }
 

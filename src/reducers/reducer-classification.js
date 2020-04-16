@@ -41,7 +41,7 @@ export default {
             let oRowData = oData.rowData;
             let row = [];
             for (let header of aHeaderData) {
-                row.push(oRowData[header.id]);
+                row.push(oRowData[header.id] || "");
             }
             aData.push(row);
         })
@@ -78,7 +78,7 @@ export default {
             values["document_types"] = sDocLabel;
 
             for (let customer of selectedCustomers) {
-                values[customer] = customerData[customer][sDocLabel]
+                values[customer] = customerData[customer][sDocLabel] || ""
             }
             let temp = {};
             temp["documentId"] = doc;
@@ -157,6 +157,19 @@ export default {
         delete state.classificationTableData.isDirty;
 
         return oRet;
+    },
+
+    handleNewCustomerAddedAfterEffects: function (state, oNewCustData) {
+        let newCustomerList = oNewCustData.customerList;
+        let oNewCustomer = oNewCustData.newCustomer;
+        let selectedList = state.selectedCustomers
+        let newSelectedCustomers = selectedList.concat([oNewCustomer.id]);
+
+        return {
+            ...state,
+            customerList:newCustomerList,
+            selectedCustomers:newSelectedCustomers
+        }
     }
 
 }

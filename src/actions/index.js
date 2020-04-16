@@ -16,6 +16,7 @@ export const SET_CLASSIFICATION_SCREEN_ON_LOAD_DATA = 'SET_CLASSIFICATION_SCREEN
 export const SET_EXTRACTION_SCREEN_ON_LOAD_DATA = 'SET_EXTRACTION_SCREEN_ON_LOAD_DATA';
 export const HANDLE_EXTRACTION_SAVE_AFTER_EFFECTS = 'HANDLE_EXTRACTION_SAVE_AFTER_EFFECTS';
 export const HANDLE_EXTRACTION_DISCARD_CLICKED = 'HANDLE_EXTRACTION_DISCARD_CLICKED';
+export const HANDLE_NEW_CUSTOMER_ADDED_AFTER_EFFECTS = 'HANDLE_NEW_CUSTOMER_ADDED_AFTER_EFFECTS';
 
 
 export const handleScreenChanged = (sScreenName) => ({
@@ -144,6 +145,23 @@ export function handleExtractionSaveClicked(groupedDocumentElements, selectedDoc
     })
         .then(res => {
           dispatch(handleExtractionSaveAfterEffects());
+        }).catch(e => dispatch(handleServerFailure(e)));
+  };
+}
+
+const handleNewCustomerAddedAfterEffects=(oNewCustData)=>({
+  type: HANDLE_NEW_CUSTOMER_ADDED_AFTER_EFFECTS,
+  newCustomerData: oNewCustData
+})
+
+export function handleNewCustomerAdded(newCustomerName) {
+  return dispatch => {
+    return axios.post(URLMappings.AddNewCustomer,  {
+      newCustomerName:newCustomerName
+    })
+        .then(res => {
+          console.log(res.data)
+          dispatch(handleNewCustomerAddedAfterEffects(res.data));
         }).catch(e => dispatch(handleServerFailure(e)));
   };
 }

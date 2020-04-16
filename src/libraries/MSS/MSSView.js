@@ -10,6 +10,7 @@ class MSSView extends React.Component {
     constructor(props) {
         super(props);
         this.selected = []
+        this.customKey = ""
     }
 
     handleChange=(values)=>{
@@ -28,6 +29,13 @@ class MSSView extends React.Component {
         }
     }
 
+    handleKeyDown=(oEvent)=>{
+        if(this.props.onEnterPress && oEvent.keyCode === 13){
+            this.props.onEnterPress(oEvent.target.value);
+            this.customKey = Math.random()
+        }
+    }
+
     getChildren(){
         const children = [];
         if(this.props.selectAll){
@@ -42,7 +50,7 @@ class MSSView extends React.Component {
 
     render() {
         return (
-            <div className={"mssViewWrapper"}>
+            <div className={"mssViewWrapper"} key={this.customKey}>
                 <div className={"mssLabel"}>{this.props.label}</div>
                 <Select
                     allowClear={!!this.props.allowClear}
@@ -53,6 +61,7 @@ class MSSView extends React.Component {
                     onChange={this.handleChange}
                     onBlur={this.handleBlur}
                     disabled={this.props.disabled}
+                    onInputKeyDown={this.handleKeyDown}
                 >
                     {this.getChildren()}
                 </Select>
@@ -66,6 +75,7 @@ MSSView.propTypes={
     label:PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
+    onEnterPress: PropTypes.func,
     childElements: PropTypes.arrayOf(PropTypes.shape({
         id:PropTypes.oneOfType([
             PropTypes.string,
