@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import {Button, Empty, Popover} from 'antd';
 import { CSVLink, CSVDownload } from "react-csv";
 import PDFView from "../PDFView/PDFView";
+import FileUploader from '../fileuploader/FileUploaderView'
 
 class EditableTable extends React.Component {
 
@@ -28,10 +29,17 @@ class EditableTable extends React.Component {
         this.props.onTableCellDataChanged(customerName, docName, newVal);
     }
 
+    handleFileUpload=(docId, base64File)=>{
+        if(!!base64File){
+            this.props.handleFileUpload(docId, base64File)
+        }
+    }
+
     getPDFViewerView=(docId)=>{
         return (
             <div className={"gridPDFViewWrapper"}>
                 <PDFView documentId={docId}/>
+                <FileUploader handleFileUpload={this.handleFileUpload.bind(this, docId)}/>
             </div>
         )
 
@@ -58,7 +66,7 @@ class EditableTable extends React.Component {
                 let oView = null;
                 if(i===0){
                     oView = (
-                        <Popover title={docName} content={this.getPDFViewerView(docId)}>
+                        <Popover visible title={docName} content={this.getPDFViewerView(docId)}>
                             <div key={i} className={"tableFixedColumn"}>{docName}</div>
                         </Popover>
                     )
@@ -140,6 +148,7 @@ EditableTable.propTypes={
     onTableCellDataChanged:PropTypes.func,
     onSave:PropTypes.func,
     onDiscard:PropTypes.func,
+    handleFileUpload:PropTypes.func,
 }
 
 function mapStateToProps(state) {

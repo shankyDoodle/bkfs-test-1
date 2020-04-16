@@ -107,10 +107,13 @@
     max-height: 500px;
     width: auto;
     overflow: auto;
+    min-height: 150px;
+    min-width: 200px;
 
     .pdfViewerContainer {
         float: left;
         height: 100%;
         width: 100%;
+        position: unset;
     }
 }

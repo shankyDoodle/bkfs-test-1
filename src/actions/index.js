@@ -182,3 +182,15 @@ export function handleNewDocumentTypeAdded(sDocTypeName) {
         }).catch(e => dispatch(handleServerFailure(e)));
   };
 }
+
+export function handleDocumentSampleUpload(docId, base64File) {
+  return dispatch => {
+    return axios.post(URLMappings.AddNewDocumentSample,  {
+        documentTypeId:docId,
+        base64File:base64File
+    })
+        .then(res => {
+          console.log("File Success");
+        }).catch(e => dispatch(handleServerFailure(e)));
+  };
+}

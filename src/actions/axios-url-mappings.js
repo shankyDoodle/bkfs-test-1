@@ -11,6 +11,7 @@ let URLMapping = function () {
     this.SaveGroupedElementData = this.ServerURL+'saveGroupedDocumentElements';
     this.AddNewCustomer = this.ServerURL+'addNewCustomer';
     this.AddNewDocumentType = this.ServerURL+'addNewDocumentType';
+    this.AddNewDocumentSample = this.ServerURL+'addNewDocumentSample';
 };
 
 export default new URLMapping();
