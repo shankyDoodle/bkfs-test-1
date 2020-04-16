@@ -27,10 +27,9 @@ export const handleClassificationDropDownOnBlur=(dropdownButtonType, selectedIte
   selectedItems:selectedItems
 })
 
-export const handleClassificationCreateButtonCLicked=(oCustomerData, oDocumentSamples)=>({
+export const handleClassificationCreateButtonCLicked=(oCustomerData)=>({
   type: HANDLE_CLASSIFICATION_CREATE_BUTTON_CLICKED,
-  customerData:oCustomerData,
-  documentSamples:oDocumentSamples
+  customerData:oCustomerData
 })
 
 export const handleTableCellDataChanged=(customerName, docName, newVal)=>({
@@ -87,13 +86,10 @@ export function fetchClassificationScreenData() {
 
 export function handleClassificationCreateButtonCLickedServerCall(selectedCustomerIds, selectedDocumentTypeIds) {
   return dispatch => {
-    return axios.all([
-      axios.post(URLMappings.GetSelectedCustomerData,  {selectedCustomerIds:selectedCustomerIds}),
-      axios.post(URLMappings.GetSelectedDocumentSamples, {selectedDocumentTypeIds: selectedDocumentTypeIds})
-    ])
-        .then(axios.spread((custRes, docRes) => {
-          dispatch(handleClassificationCreateButtonCLicked(custRes.data, docRes.data));
-        })).catch(e => dispatch(handleServerFailure(e)));
+    return axios.post(URLMappings.GetSelectedCustomerData,  {selectedCustomerIds:selectedCustomerIds})
+        .then(res => {
+          dispatch(handleClassificationCreateButtonCLicked(res.data));
+        }).catch(e => dispatch(handleServerFailure(e)));
   };
 }
 

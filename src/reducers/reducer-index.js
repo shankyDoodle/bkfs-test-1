@@ -33,7 +33,7 @@ export default (state = getInitialState(), action) => {
             return classification.handleClassificationDropDownOnBlur(state, action.dropdownButtonType, action.selectedItems);
 
         case appActions.HANDLE_CLASSIFICATION_CREATE_BUTTON_CLICKED:
-            return classification.handleClassificationCreateButtonCLicked(state, action.customerData, action.documentSamples);
+            return classification.handleClassificationCreateButtonCLicked(state, action.customerData);
 
         case appActions.HANDLE_TABLE_CELL_DATA_CHANGED:
             return classification.handleTableCellDataChanged(state, action.customerName, action.docName, action.newVal);

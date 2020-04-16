@@ -54,7 +54,7 @@ export default {
       // return documentTypes;
     },
 
-    handleClassificationCreateButtonCLicked: function (state, customerData, documentSamples) {
+    handleClassificationCreateButtonCLicked: function (state, customerData) {
         let selectedDocuments = state.selectedDocuments;
         let selectedCustomers = state.selectedCustomers;
 
@@ -84,8 +84,6 @@ export default {
             temp["documentId"] = doc;
             temp["documentName"] = sDocLabel;
             temp["rowData"] = values
-            temp["file"] = documentSamples[doc].data; //buffer data;
-            temp["unusedFileData"] = documentSamples[doc];//backup
             aBodyData.push(temp);
         }
 

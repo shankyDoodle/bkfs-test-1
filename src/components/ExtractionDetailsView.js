@@ -46,7 +46,8 @@ class ExtractionDetailsView extends React.Component {
     }
 
     getPDFView(){
-        return <PDFView documentId={this.props.selectedDocuments[0]}/>
+        let docId = this.props.selectedDocuments[0]
+        return <PDFView key={docId} documentId={docId}/>
     }
 
     render() {
