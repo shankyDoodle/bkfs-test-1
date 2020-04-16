@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import { bindActionCreators } from 'redux'
+import PropTypes from 'prop-types';
 
 import * as myActions from '../actions/index';
 import {Button, Empty} from 'antd';
@@ -12,7 +13,7 @@ import {CSVDownload, CSVLink} from "react-csv";
 import axios from "axios";
 import URLMappings from "../actions/axios-url-mappings";
 
-class ExtractionDetailsView extends React.Component {
+export class ExtractionDetailsView extends React.Component {
     state ={
         exportAllClicked: false,
         exportAllData:null
@@ -130,6 +131,14 @@ class ExtractionDetailsView extends React.Component {
             </div>
         );
     }
+}
+
+ExtractionDetailsView.propTypes={
+    selectedDocuments:PropTypes.array,
+    groupedDocumentElements:PropTypes.array,
+    isExtractionListDirty:PropTypes.bool,
+    textData:PropTypes.string,
+
 }
 
 function mapStateToProps(state) {
