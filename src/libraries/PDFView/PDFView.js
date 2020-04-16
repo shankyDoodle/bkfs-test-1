@@ -98,11 +98,7 @@ class PDFView extends Component {
 }
 
 PDFView.propTypes = {
-    document: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object
-    ])
-
+    documentId: PropTypes.string
 }
 
 export default PDFView
