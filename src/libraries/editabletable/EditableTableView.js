@@ -6,7 +6,7 @@ import { CSVLink, CSVDownload } from "react-csv";
 import PDFView from "../PDFView/PDFView";
 import FileUploader from '../fileuploader/FileUploaderView'
 
-class EditableTable extends React.Component {
+export class EditableTable extends React.Component {
 
     getTableHeader() {
         let aHeaderList = this.props.headerData
