@@ -18,7 +18,7 @@ const styles = {
     }
 };
 
-class Home extends React.Component {
+export class Home extends React.Component {
 
     constructor(props) {
         super(props);
