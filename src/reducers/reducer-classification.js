@@ -1,9 +1,5 @@
 import _ from 'lodash'
 
-import {
-    documentTypes
-} from "../mockdata/mockData";
-
 import * as appConstants from '../constants/appConstants';
 import {Utils} from '../utils/utils';
 

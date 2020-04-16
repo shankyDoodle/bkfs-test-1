@@ -1,24 +1,6 @@
 import _ from 'lodash'
 
-import {
-    documentTypes,
-    groupedDocElements
-} from "../mockdata/mockData";
-
-import * as appConstants from '../constants/appConstants';
-import {Utils} from '../utils/utils';
-
 export default {
-    fetchSampleFile: function (docName) {
-        //TODO: ideally fetch files from server
-        return "./pdfs/"+ documentTypes[docName];
-    },
-
-    fetchGroupedDocumentElementsByDocumentName: function (docName) {
-        //TODO: ideally fetch files from server
-        return groupedDocElements
-    },
-
     setExtractionScreenOnLoadData: function (state, documentTypes) {
         return {
             ...state,
