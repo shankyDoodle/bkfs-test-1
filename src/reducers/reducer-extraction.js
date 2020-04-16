@@ -43,17 +43,15 @@ export default {
         return sData;
     },
 
-    handleExtractionCreateButtonCLicked: function (state, groupedElements, sampleFile) {
+    handleExtractionCreateButtonCLicked: function (state, groupedElements) {
         let aGroupedDocumentData = groupedElements;
-        let oFile = sampleFile;
 
         let textData = this.createSingleTextData(aGroupedDocumentData);
 
         return {
             ...state,
             textData,
-            groupedDocumentElements: aGroupedDocumentData,
-            extractedSampleFile: oFile
+            groupedDocumentElements: aGroupedDocumentData
         }
     },
 

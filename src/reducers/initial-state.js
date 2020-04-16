@@ -12,7 +12,6 @@ let initialState = {
     originalCSVData:[],
     isScreenDirty: false,
     groupedDocumentElements:[],
-    extractedSampleFile:null,
     textData:"",
     selectedDocumentSamples:{}
 }

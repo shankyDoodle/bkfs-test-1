@@ -7,6 +7,7 @@ let URLMapping = function () {
     this.GetSelectedDocumentSamples = this.ServerURL+'selectedDocumentSamples';
     this.SaveTableData = this.ServerURL+'updateCustomerData';
     this.GetGroupedElementsByDocId = this.ServerURL+'getGroupedDocumentElements';
+    this.GetSampleDocumentByDocId = this.ServerURL+'getSampleDocument';
 };
 
 export default new URLMapping();

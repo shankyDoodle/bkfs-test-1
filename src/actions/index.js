@@ -51,10 +51,9 @@ export const handleExtractionDropDownOnBlur=(dropdownButtonType, selectedItems)=
   selectedItems:selectedItems
 })
 
-export const handleExtractionCreateButtonCLicked=(groupedElements, sampleFile)=>({
+export const handleExtractionCreateButtonCLicked=(groupedElements)=>({
   type: HANDLE_EXTRACTION_CREATE_BUTTON_CLICKED,
-  groupedElements:groupedElements,
-  sampleFile:sampleFile
+  groupedElements:groupedElements
 })
 
 export const handleExtractionListDragEnd=(source, destination)=>({
@@ -124,12 +123,9 @@ export function fetchExtractionScreenData() {
 
 export function handleExtractionCreateButtonClickedFetchData(documentId) {
   return dispatch => {
-    return axios.all([
-      axios.get(URLMappings.GetGroupedElementsByDocId, {params:{documentId:documentId}}),
-      // axios.get(URLMappings.GetDocumentTypes)
-    ])
-        .then(axios.spread((groupedEl, docRes) => {
-          dispatch(handleExtractionCreateButtonCLicked(groupedEl.data, {}));
-        })).catch(e => dispatch(handleServerFailure(e)));
+    return axios.get(URLMappings.GetGroupedElementsByDocId, {params:{documentId:documentId}})
+        .then(res => {
+          dispatch(handleExtractionCreateButtonCLicked(res.data));
+        }).catch(e => dispatch(handleServerFailure(e)));
   };
 }
