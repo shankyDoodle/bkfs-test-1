@@ -18,6 +18,7 @@ import './style/style-tab.scss'
 import './libraries/editabletable/style-editable-table.scss'
 import './libraries/PDFView/style-pdf-viewer.scss'
 import './libraries/draggablelistgroup/style-draggable-list-group-view.scss'
+import './libraries/fileuploader/style-file-uploader-view.scss'
 
 import App from './components/App'
 import configureStore from "./store/configureStore";
