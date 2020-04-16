@@ -8,7 +8,7 @@ import {Button, Divider} from 'antd';
 
 import {dropdownTypes} from "../constants/appConstants";
 
-class ExtractionSelectionView extends React.Component {
+export class ExtractionSelectionView extends React.Component {
 
     createDropDownListModel(data) {
         let list = []

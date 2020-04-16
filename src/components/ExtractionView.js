@@ -8,7 +8,7 @@ import TabView from "../libraries/TabView";
 import ExtractionSelectionView from "./ExtractionSelectionView"
 import ExtractionDetailsView from "./ExtractionDetailsView"
 
-class ExtractionView extends React.Component {
+export class ExtractionView extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(myActions.fetchExtractionScreenData());
