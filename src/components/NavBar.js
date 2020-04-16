@@ -23,6 +23,7 @@ const styles = {
     },
     title: {
         flexGrow: 1,
+        color:"#ffffff"
     },
     appBar:{
 
@@ -55,7 +56,7 @@ export class NavBar extends React.Component {
                 <AppBar position="static">
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
-                            BKFS
+                            Black Knight
                         </Typography>
                         <IconButton
                             edge="end"
