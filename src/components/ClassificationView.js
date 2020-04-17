@@ -28,10 +28,6 @@ export class ClassificationView extends React.Component {
         this.props.dispatch(myActions.handleTableSaveDiscardClicked(buttonType));
     }
 
-    handleFileUpload=(docId, base64File)=>{
-        this.props.dispatch(myActions.handleDocumentSampleUpload(docId, base64File));
-    }
-
     getTabBody() {
         let tableData = this.props.classificationTableData.isDirty ?
             this.props.classificationTableData.clonedObject : this.props.classificationTableData
@@ -48,7 +44,6 @@ export class ClassificationView extends React.Component {
                         onTableCellDataChanged={this.handleTableCellDataChanged}
                         onSave={this.handleTableSaveDiscardClicked.bind(this, "save")}
                         onDiscard={this.handleTableSaveDiscardClicked.bind(this, "discard")}
-                        handleFileUpload={this.handleFileUpload}
                         csvData={this.props.csvData}
                     />
                 </div>

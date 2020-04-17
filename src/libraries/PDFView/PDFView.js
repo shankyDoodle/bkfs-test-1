@@ -4,6 +4,8 @@ import {Document, Page} from "react-pdf";
 import {LeftOutlined, RightOutlined} from '@ant-design/icons';
 import {Button, Empty} from 'antd'
 import axios from "axios";
+
+import FileUploader from '../fileuploader/FileUploaderView'
 import URLMappings from "../../actions/axios-url-mappings";
 
 class PDFView extends Component {
@@ -56,6 +58,22 @@ class PDFView extends Component {
         return <div className={"emptyPdf"}><Empty/></div>
     }
 
+    handleFileUploadSuccess=(sBase64File)=>{
+        this.setState({
+            fileData:`data:application/pdf;base64,${sBase64File}`,
+            numPages: null,
+            pageNumber: 1,
+        });
+    }
+
+    getFileUploadDOM=()=>{
+        if(!this.props.enableFileUpload) return null;
+
+        return (<div className={"pdfViewFileUploader"}>
+            <FileUploader documentId={this.props.documentId} handleFileUploadSuccess={this.handleFileUploadSuccess}/>
+        </div>)
+    }
+
     getNavigationDOM=()=>{
         if(!this.state.fileData){
             return null;
@@ -70,6 +88,7 @@ class PDFView extends Component {
                 <div className={"navChild next"}>
                     <Button icon={<RightOutlined/>} size={"small"} onClick={this.goToNextPage}/>
                 </div>
+                {this.getFileUploadDOM()}
             </div>
         )
     }
@@ -98,7 +117,8 @@ class PDFView extends Component {
 }
 
 PDFView.propTypes = {
-    documentId: PropTypes.string
+    documentId: PropTypes.string,
+    enableFileUpload: PropTypes.bool
 }
 
 export default PDFView

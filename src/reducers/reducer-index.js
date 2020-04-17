@@ -5,24 +5,14 @@ import * as appActions from '../actions'
 
 import classification from "./reducer-classification";
 import extraction from "./reducer-extraction";
-import {
-    HANDLE_EXTRACTION_DROP_DOWN_ON_BLUR,
-    HANDLE_EXTRACTION_SAVE_AFTER_EFFECTS, HANDLE_NEW_CUSTOMER_ADDED_AFTER_EFFECTS,
-    SET_EXTRACTION_SCREEN_ON_LOAD_DATA
-} from "../actions";
-
-
 
 function resetToInitialState(oRet) {
     Object.assign(oRet, {...defaultState});
 }
 function handleScreenChanged(state, sScreenName) {
     let oRet = {...state}
-
-    switch(sScreenName){
-        case screenNames.HOME:
-        default:
-            resetToInitialState(oRet)
+    if(sScreenName === screenNames.HOME){
+        resetToInitialState(oRet)
     }
     Object.assign(oRet, {currentScreen: sScreenName});
     return oRet
