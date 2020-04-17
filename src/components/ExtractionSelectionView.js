@@ -4,9 +4,10 @@ import MSSView from "../libraries/MSS/MSSView";
 import {bindActionCreators} from "redux";
 import * as myActions from "../actions";
 import {connect} from "react-redux";
-import {Button, Divider} from 'antd';
+import {Button, Divider, Popover} from 'antd';
 
 import {dropdownTypes} from "../constants/appConstants";
+import _ from "lodash";
 
 export class ExtractionSelectionView extends React.Component {
 
@@ -36,11 +37,23 @@ export class ExtractionSelectionView extends React.Component {
             label={"Document Types"}
             childElements={aDropDownListModel}
             disabled={this.props.isExtractionListDirty}
-            onBlur={this.handleExtractionDropDownOnBlur.bind(this, dropdownTypes.DOCUMENT_TYPES)}/>
+            onChange={this.handleExtractionDropDownOnBlur.bind(this, dropdownTypes.DOCUMENT_TYPES)}/>
     }
 
-    render() {
+    getCreateButtonView(){
         let bIsCreateButtonDisabled = this.props.isExtractionListDirty || ! this.props.selectedDocuments || !this.props.selectedDocuments.length;
+        if(bIsCreateButtonDisabled){
+            let content = this.props.isExtractionListDirty ? "There are unsaved changes in the list order. Please save or discard them first." :
+                "Please select at least one document type.";
+            return <Popover content={content}>
+                <Button onClick={this.handleCreateButtonClicked} disabled={true}>Create</Button>
+            </Popover>
+        }
+
+        return <Button onClick={this.handleCreateButtonClicked}
+                       disabled={bIsCreateButtonDisabled}>Create</Button>
+    }
+    render() {
         return (
             <div className={"extractionSelectionContainer"}>
                 <div className={"dropDownsContainer"}>
@@ -50,8 +63,7 @@ export class ExtractionSelectionView extends React.Component {
                     <Divider/>
                 </div>
                 <div className={"buttonFooter"}>
-                    <Button onClick={this.handleCreateButtonClicked}
-                            disabled={bIsCreateButtonDisabled}>Create</Button>
+                    {this.getCreateButtonView()}
                 </div>
             </div>
         );
