@@ -12,7 +12,8 @@ class PDFView extends Component {
     state = {
         numPages: null,
         pageNumber: 1,
-        fileData:null
+        fileData:null,
+        customKey:""
     };
 
     constructor(props) {
@@ -63,6 +64,7 @@ class PDFView extends Component {
             fileData:`data:application/pdf;base64,${sBase64File}`,
             numPages: null,
             pageNumber: 1,
+            customKey:Math.random()
         });
     }
 
@@ -80,7 +82,7 @@ class PDFView extends Component {
         }
         const {pageNumber, numPages} = this.state;
         return (
-            <div className={"navigationWrapper"} ref={this.navRef}>
+            <div className={"navigationWrapper"} ref={this.navRef} key={this.state.customKey}>
                 <div className={"navChild prev"}>
                     <Button icon={<LeftOutlined/>} size={"small"} onClick={this.goToPrevPage}/>
                 </div>
@@ -88,7 +90,6 @@ class PDFView extends Component {
                 <div className={"navChild next"}>
                     <Button icon={<RightOutlined/>} size={"small"} onClick={this.goToNextPage}/>
                 </div>
-                {this.getFileUploadDOM()}
             </div>
         )
     }
@@ -111,6 +112,7 @@ class PDFView extends Component {
                     </Document>
                 </div>
                 {oNavigationDOM}
+                {this.getFileUploadDOM()}
             </div>
         );
     }
