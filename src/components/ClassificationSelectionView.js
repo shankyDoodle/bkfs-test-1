@@ -5,7 +5,7 @@ import MSSView from "../libraries/MSS/MSSView";
 import {bindActionCreators} from "redux";
 import * as myActions from "../actions";
 import {connect} from "react-redux";
-import {Button, Divider} from 'antd';
+import {Button, Divider, Popover} from 'antd';
 
 import {dropdownTypes, screenNames} from "../constants/appConstants";
 
@@ -72,7 +72,11 @@ class ClassificationSelectionView extends React.Component {
 
     getFooterButtonView(){
         if(_.isEmpty(this.props.selectedDocuments) || this.props.customerData.hasOwnProperty("clonedObject")){
-            return <Button disabled onClick={this.handleCreateButtonClicked}>Create</Button>
+            let content = _.isEmpty(this.props.selectedDocuments) ? "Please select at least one document type." :
+                "There are unsaved changes in table. Please save or discard them first.";
+            return <Popover content={content}>
+                <Button disabled onClick={this.handleCreateButtonClicked}>Create</Button>
+            </Popover>
         }
 
         return <Button onClick={this.handleCreateButtonClicked}>Create</Button>

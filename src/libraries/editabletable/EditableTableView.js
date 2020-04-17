@@ -64,7 +64,7 @@ export class EditableTable extends React.Component {
                     )
                 }else{
                     oView = (
-                        <input  key={customerId+"%$$%"+docId} value={val}
+                        <input className={"tableCellInput"} key={customerId+"%$$%"+docId} value={val}
                                onChange={this.handleTextChanged.bind(this, customerId, docId)}/>);
                 }
 
@@ -72,7 +72,7 @@ export class EditableTable extends React.Component {
                     <div>{oView}</div>
                 </td>);
             }
-            aTrs.push(<tr className={"rowTest"}>{aTds}</tr>)
+            aTrs.push(<tr className={"tableRow"}>{aTds}</tr>)
         }
 
         return aTrs;

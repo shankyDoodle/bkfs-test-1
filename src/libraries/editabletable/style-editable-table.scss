@@ -98,6 +98,22 @@
                     max-width: 250px;
                 }
 
+                .tableRow{
+
+                    .tableCellInput{
+                        border: none;
+                        border-bottom: 1px solid #80808091;
+                        outline: none;
+                        transition: all ease 0.2s;
+                        &:focus{
+                            border-bottom: 1px solid #000;
+                        }
+                        &:hover{
+                            border-bottom: 1px solid #000;
+                        }
+                    }
+                }
+
             }
         }
     }
