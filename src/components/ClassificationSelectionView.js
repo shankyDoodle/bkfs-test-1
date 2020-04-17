@@ -51,7 +51,7 @@ class ClassificationSelectionView extends React.Component {
             disabled={isDisabled}
             selected={this.props.selectedCustomers}
             onEnterPress={this.handleNewCustomerAdded}
-            selectAll={false}/>
+            selectAll={true}/>
     }
 
     getDocumentDropdownView(){
@@ -67,7 +67,7 @@ class ClassificationSelectionView extends React.Component {
             disabled={isDisabled}
             selected={this.props.selectedDocuments}
             onEnterPress={this.handleNewDocumentTypeAdded}
-            selectAll={false}/>
+            selectAll={true}/>
     }
 
     getFooterButtonView(){

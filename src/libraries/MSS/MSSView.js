@@ -13,11 +13,18 @@ export class MSSView extends React.Component {
         this.customKey = ""
     }
 
+    componentDidMount() {
+
+    }
+
     handleChange=(values)=>{
         this.selected = values
-        // if(values.includes("selectAll")){
-        //     this.handleBlur();
-        // }
+        if(this.props.selectAll && values.includes("selectAll")){
+            this.selected = this.props.childElements.map(item=>item.id);
+            this.customKey = Math.random()
+            this.handleBlur();
+
+        }
         if (this.props.onChange) {
             this.props.onChange(this.selected);
         }
@@ -39,7 +46,8 @@ export class MSSView extends React.Component {
     getChildren(){
         const children = [];
         if(this.props.selectAll){
-            children.push(<Option key={"selectAll"}>{"Select All"}</Option>);
+            let bIsDisabled = this.props.selected.length === this.props.childElements.length
+            children.push(<Option disabled={bIsDisabled} key={"selectAll"}>{"Select All"}</Option>);
         }
 
         for (let item of this.props.childElements) {
