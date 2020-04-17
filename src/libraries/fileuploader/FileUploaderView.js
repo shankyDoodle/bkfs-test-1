@@ -28,7 +28,11 @@ class FileUploaderView extends React.Component {
         return (
             <div className={"pdfUploadContainer"}>
                 <Button icon={<UploadOutlined/>} className={"pdfUploadAntBtn"} size={"small"}>Upload
-                    <input className={"pdfUploadInput"} type="file" name="file" onChange={this.uploadFile}/>
+                    <input className={"pdfUploadInput"}
+                           type="file"
+                           name="file"
+                           accept="application/pdf"
+                           onChange={this.uploadFile}/>
                 </Button>
             </div>
         )
