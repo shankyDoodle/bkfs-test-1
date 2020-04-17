@@ -1,68 +1,48 @@
-This project was bootstrapped with [Create React Home](https://github.com/facebook/create-react-app).
+# BKFS Test
 
-## Available Scripts
+This is a test project created for Black Knight Inc test.
 
-In the project directory, you can run:
+## Project Status & Description:
+This app is hosted on aws server.
+Demo link: http://18.222.135.156:3000/
 
-### `yarn start`
+* Front-end github source code link: https://github.com/shankyDoodle/bkfs-test-1
+* Back-end github source code link: https://github.com/shankyDoodle/bkfs-test-1-backend
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Project technical description
+* Front-end is created using React.Js and following Redux architecture. 
+* Backend is created as Node.js express server. Currently no database technology is integrated with this server and all data is statically stored on server itself
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React Home documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web Home
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+##### Given Requirements and their status 
+* Classification Screen
+    ##### Completed Features:
+    1. User have two dropdowns i.e. Customer Names and Document Types.
+    2. User options:
+        1. select one or more values from it.
+        2. do not have 'select all' option for now.
+        3. remove all selected options.
+        4. can search on list by typing strin in dropdown.
+    3. Based on selection editable table is rendered.
+    4. User have options to save or discard edited data from the table. This data is updated on node server as well.
+    5. On mouse over of Document Type names, sample PDF is shown. This PDF data is lazy loaded i.e. PDF is fetched from backend only after mouse over
+    6. User can export current state of table data to desired csv format.
+    7. Both dropdowns have "ADD" feature i.e. when we type any string in dropdown box, it will search for that child 
+       option and if typed string is present then upon "ENTER" click new element is created from backend with the same 
+       typed string as label. This is how user can add customer and document type.
+    
+    ##### Remaining Features:
+    1. Select all option for dropdown.
+    2. PDF upload option to add new samples.
+    
+* Extraction Screen
+    All required features are completed.
+    1. User can see one dropdown and select one element at a time.
+    2. Upon create button click user can see grouped element list and sample PDF for the selected document type.
+    3. Groped element list items have ability to re-order themselves between same group as well as across the different lists.
+       This can be done by simple mouse dragging operation.
+    4. After list order is changed, user can save or discard the operation. This also reflect to backend.
+    5. PDF view is view only and have navigations buttons to go over different pages.
+    6. 'Export' button exports desired data which is present at current screen.
+    7. 'Export all' button exports desired data which is stored on server database.
+    
+If any of the screen is in dirty condition, then user is prevented from leaving the current screen before either saving it or discarding it. 
