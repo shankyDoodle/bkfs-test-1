@@ -45,3 +45,18 @@ Demo link: http://18.222.135.156:3000/
 If any of the screen is in dirty condition, then user is prevented from leaving the current screen before either saving it or discarding it.
 And from the bonus feature, although multi user scenario is not implemented, app will work for multi-window scenario serving latest saved data on server.
 All UI components are tested with help of Jest + Enzyme automated testing tool.(Snapshot testing)
+
+#### Installation & Run
+- Pre req: NodeJs
+- Run server
+    - Clone or Download backend repo https://github.com/shankyDoodle/bkfs-test-1-backend
+    - Run command
+    
+         `node index.js
+         `
+- Run front-end
+    - Clone or download front-end repo https://github.com/shankyDoodle/bkfs-test-1
+    - Run command
+    
+        `npm start`
+    - Hit URL http://localhost:3000/
